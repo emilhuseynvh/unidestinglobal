@@ -18,21 +18,21 @@ const CartItem = ({ item }) => {
   const [expanded, setExpanded] = useState(false)
 
   return (
-    <div className="border border-[#e6e6e6] rounded-2xl p-4 flex flex-col gap-4">
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3 sm:gap-4 min-w-0">
-          <div className="size-20 sm:size-25 rounded-xl overflow-hidden bg-[#f5f5f5] shrink-0">
+    <div className="border border-[#e6e6e6] rounded-2xl p-3 sm:p-4 flex flex-col gap-3 sm:gap-4">
+      <div className="flex items-start justify-between gap-2 sm:gap-3">
+        <div className="flex items-start gap-2.5 sm:gap-4 min-w-0">
+          <div className="size-16 sm:size-20 md:size-25 rounded-lg sm:rounded-xl overflow-hidden bg-[#f5f5f5] shrink-0">
             <img src={item.image} alt={item.title} className="size-full object-cover" />
           </div>
-          <div className="flex flex-col gap-1 min-w-0">
-            <span className="bg-[#f1f9f4] text-[#53a862] text-[12px] font-medium leading-[1.4] px-2 py-1 rounded-full self-start whitespace-nowrap">
+          <div className="flex flex-col gap-0.5 sm:gap-1 min-w-0">
+            <span className="bg-[#f1f9f4] text-[#53a862] text-[11px] sm:text-[12px] font-medium leading-[1.4] px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full self-start whitespace-nowrap">
               TOP RATED
             </span>
-            <h3 className="text-[16px] font-semibold text-[#333] leading-6">{item.title}</h3>
-            <span className="text-[16px] font-semibold text-[#553efb] leading-6">${item.price}</span>
+            <h3 className="text-[14px] sm:text-[16px] font-semibold text-[#333] leading-5 sm:leading-6 line-clamp-2">{item.title}</h3>
+            <span className="text-[14px] sm:text-[16px] font-semibold text-[#553efb] leading-5 sm:leading-6">${item.price}</span>
           </div>
         </div>
-        <button className="size-6 flex items-center justify-center shrink-0 hover:opacity-70 transition-opacity">
+        <button className="size-5 sm:size-6 flex items-center justify-center shrink-0 hover:opacity-70 transition-opacity mt-1">
           <img src={imgTrash} alt="Remove" className="size-full" />
         </button>
       </div>
@@ -43,7 +43,7 @@ const CartItem = ({ item }) => {
         onClick={() => setExpanded(!expanded)}
         className="flex items-center gap-1 self-start"
       >
-        <span className="text-[16px] font-medium text-[#808080] leading-6">Course Details</span>
+        <span className="text-[14px] sm:text-[16px] font-medium text-[#808080] leading-5 sm:leading-6">Course Details</span>
         <svg
           width="20" height="20" viewBox="0 0 20 20" fill="none"
           className={`transition-transform ${expanded ? "rotate-180" : ""}`}

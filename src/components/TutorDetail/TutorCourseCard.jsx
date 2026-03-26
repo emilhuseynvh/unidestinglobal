@@ -59,14 +59,14 @@ const TutorCourseCard = ({ course }) => {
   const closed = course.status === "Course Closed"
 
   return (
-    <div className="border border-[#e6e6e6] rounded-2xl p-4 flex flex-col gap-3">
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex gap-4 items-start flex-1 min-w-0">
-          <div className="w-[140px] sm:w-[188px] self-stretch rounded-2xl overflow-hidden shrink-0 bg-[#f5f5f5]">
+    <div className="border border-[#e6e6e6] rounded-2xl p-3 sm:p-4 flex flex-col gap-3">
+      <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4">
+        <div className="flex gap-3 sm:gap-4 items-start flex-1 min-w-0 w-full">
+          <div className="w-full sm:w-[140px] md:w-[188px] h-[160px] sm:h-auto sm:self-stretch rounded-xl sm:rounded-2xl overflow-hidden shrink-0 bg-[#f5f5f5]">
             <img src={course.image} alt={course.title} className="size-full object-cover" />
           </div>
 
-          <div className="flex-1 flex flex-col gap-3 min-w-0">
+          <div className="hidden sm:flex flex-1 flex-col gap-3 min-w-0">
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-0.5">
                 <h3 className="text-[18px] sm:text-[20px] font-semibold text-[#333] leading-[1.4]">{course.title}</h3>

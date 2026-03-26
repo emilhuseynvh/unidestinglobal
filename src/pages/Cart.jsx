@@ -85,17 +85,17 @@ const Cart = () => {
         </h1>
 
         <div className="flex flex-col lg:flex-row gap-4">
-          <div className="flex flex-col gap-4 min-w-0 p-1 w-full lg:w-[770px] shrink-0">
+          <div className="flex flex-col gap-4 min-w-0 w-full lg:max-w-[770px] lg:flex-[2]">
             {cartItems.map((item) => (
               <CartItem key={item.id} item={item} />
             ))}
           </div>
-          <div className="flex-1 min-w-0 lg:sticky lg:top-6 self-start">
+          <div className="w-full lg:flex-1 lg:sticky lg:top-6 self-start">
             <CartSummary items={cartItems} />
           </div>
         </div>
 
-        <div className="flex flex-col gap-5 w-full lg:w-[770px]">
+        <div className="flex flex-col gap-5 w-full lg:max-w-[770px]">
           <h2 className="text-[24px] font-semibold text-[#333] leading-8">
             You might also like
           </h2>

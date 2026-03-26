@@ -1,153 +1,145 @@
-import { useState } from 'react'
-import { Link } from 'react-router'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import { useState } from "react"
+import { Link, useNavigate } from "react-router"
 
-const imgGraduationCap = "https://www.figma.com/api/mcp/asset/669ad2e9-bbb1-4d98-944d-d5829dc09c8b"
-const imgChalkboard = "https://www.figma.com/api/mcp/asset/aeea9f34-927b-4d4a-9f92-739620c6efd4"
+const steps = [
+  { num: 1, title: "Your details", desc: "Provide an email and password" },
+  { num: 2, title: "Verify your mail", desc: "Enter your verification code" },
+  { num: 3, title: "Parent Information", desc: "Provide parent details" },
+  { num: 4, title: "Let's us know you!", desc: "Description" },
+]
 
 const Register = () => {
-  const [step, setStep] = useState(1)
-  const [accountType, setAccountType] = useState(null)
-  const [isOver18, setIsOver18] = useState(false)
-
-  const handleNext = () => {
-    if (step === 1 && accountType) {
-      setStep(2)
-    }
-  }
+  const [selected, setSelected] = useState("student")
+  const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen bg-[#fafafa] overflow-x-hidden">
-      <div className="w-[1440px] mx-auto relative">
-        <Header />
-
-        <div className="flex flex-col items-center mx-auto pb-[32px] pt-[64px] w-[1090px]">
-          {step === 1 && (
-            <div className="flex flex-col gap-[32px] items-end justify-center">
-              <div className="flex flex-col gap-[28px] items-end justify-center">
-                <div className="flex items-start justify-between p-[4px] w-[797px]">
-                  <div className="flex flex-1 items-center justify-between">
-                    <h2 className="font-semibold leading-[1.4] text-[20px] text-[#333] text-center whitespace-nowrap">
-                      Choose an account type
-                    </h2>
-                    <Link to="/login" className="size-[20px] flex items-center justify-center hover:opacity-70 transition-opacity">
-                      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                        <path d="M1 1L14 14M14 1L1 14" stroke="#333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </Link>
+    <div className="min-h-screen bg-[#e5e5e5] flex relative">
+      <div className="hidden lg:flex flex-col justify-between bg-[#f7f9fb] w-[280px] xl:w-[320px] shrink-0 rounded-2xl m-4 p-6 pt-8 pb-6">
+        <div className="flex flex-col gap-11">
+          <Link to="/">
+            <img src="https://www.figma.com/api/mcp/asset/55a81b1a-cad6-48b3-80eb-6471a28c39d9" alt="Unidestin" className="h-[17px] w-[100px]" />
+          </Link>
+          <div className="flex flex-col">
+            {steps.map((step, i) => (
+              <div key={step.num} className="flex items-start gap-4">
+                <div className="flex flex-col items-center shrink-0">
+                  <div className="size-6 rounded-full border-[0.5px] border-[#c6c5c8] flex items-center justify-center">
+                    <span className={`text-[16px] font-medium leading-[1.4] ${step.num === 1 ? "text-[#007aff]" : "text-[#b3b3b3]"}`}>
+                      {step.num}
+                    </span>
                   </div>
+                  {i < steps.length - 1 && (
+                    <div className="w-px h-7 border-l border-dashed border-[#c6c5c8] my-1" />
+                  )}
                 </div>
-
-                <div className="flex flex-col gap-[20px] items-start w-[797px]">
-                  <div className="flex flex-col gap-[12px] items-start w-full">
-                    <div
-                      onClick={() => setAccountType('student')}
-                      className={`bg-white border ${accountType === 'student' ? 'border-[#007aff]' : 'border-[#e9eaeb]'} flex gap-[4px] items-start p-[16px] rounded-[12px] w-full cursor-pointer hover:border-[#007aff] transition-colors`}
-                    >
-                      <div className="flex flex-1 gap-[16px] items-start">
-                        <div className="bg-white border border-[#e9eaeb] overflow-hidden rounded-[6px] size-[32px] flex items-center justify-center">
-                          <img src={imgGraduationCap} alt="" className="size-[16px]" />
-                        </div>
-                        <div className="flex flex-col gap-[2px] items-start w-[398px]">
-                          <div className="flex gap-[8px] items-center">
-                            <p className="font-medium leading-[24px] text-[#414651] text-[16px] whitespace-nowrap">
-                              I want to learn
-                            </p>
-                            <div className="bg-[#fcf7f1] flex items-center justify-center px-[8px] py-[4px] rounded-[25px]">
-                              <span className="font-medium leading-[1.4] text-[12px] text-[#d9a055] whitespace-nowrap">
-                                Student account
-                              </span>
-                            </div>
-                          </div>
-                          <p className="font-normal leading-[20px] text-[#535862] text-[14px]">
-                            Includes up to 10 users, 20 GB individual data and access to all features.
-                          </p>
-                        </div>
-                      </div>
-                      <div className={`border ${accountType === 'student' ? 'bg-[#0080ff] border-[#0080ff]' : 'bg-white border-[#dfe1e7]'} rounded-[6px] size-[20px] flex items-center justify-center`}>
-                        {accountType === 'student' && (
-                          <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
-                            <path d="M1 5L4.5 8.5L11 1.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        )}
-                      </div>
-                    </div>
-
-                    {accountType === 'student' && (
-                      <div className="flex gap-[12px] items-center">
-                        <button
-                          type="button"
-                          onClick={() => setIsOver18(!isOver18)}
-                          className={`relative flex h-[20px] items-center overflow-hidden p-[2px] rounded-[12px] w-[36px] transition-colors ${isOver18 ? 'bg-[#0080ff]' : 'bg-[#eceff3]'}`}
-                        >
-                          <div className={`size-[16px] bg-white rounded-full shadow-sm transition-transform ${isOver18 ? 'translate-x-[16px]' : 'translate-x-0'}`} />
-                        </button>
-                        <p className="font-normal leading-[1.4] text-[14px] text-black whitespace-nowrap">
-                          I am over 18
-                        </p>
-                      </div>
-                    )}
-                  </div>
-
-                  <div
-                    onClick={() => setAccountType('tutor')}
-                    className={`bg-white border ${accountType === 'tutor' ? 'border-[#007aff]' : 'border-[#e9eaeb]'} flex gap-[4px] items-start p-[16px] rounded-[12px] w-full cursor-pointer hover:border-[#007aff] transition-colors`}
-                  >
-                    <div className="flex flex-1 gap-[16px] items-start">
-                      <div className="bg-white border border-[#e9eaeb] overflow-hidden rounded-[6px] size-[32px] flex items-center justify-center">
-                        <img src={imgChalkboard} alt="" className="size-[16px]" />
-                      </div>
-                      <div className="flex flex-col gap-[2px] items-start w-[398px]">
-                        <div className="flex gap-[8px] items-center">
-                          <p className="font-medium leading-[24px] text-[#414651] text-[16px] whitespace-nowrap">
-                            I want to teach
-                          </p>
-                          <div className="bg-[#f1f9f4] flex items-center justify-center px-[8px] py-[4px] rounded-[25px]">
-                            <span className="font-medium leading-[1.4] text-[12px] text-[#53a862] whitespace-nowrap">
-                              Tutor account
-                            </span>
-                          </div>
-                        </div>
-                        <p className="font-normal leading-[20px] text-[#535862] text-[14px]">
-                          Includes up to 10 users, 20 GB individual data and access to all features.
-                        </p>
-                      </div>
-                    </div>
-                    <div className={`border ${accountType === 'tutor' ? 'bg-[#0080ff] border-[#0080ff]' : 'bg-white border-[#dfe1e7]'} rounded-[6px] size-[20px] flex items-center justify-center`}>
-                      {accountType === 'tutor' && (
-                        <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
-                          <path d="M1 5L4.5 8.5L11 1.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      )}
-                    </div>
-                  </div>
+                <div className="flex flex-col gap-1 pt-0.5">
+                  <p className="text-[16px] font-normal text-black leading-[1.4]">
+                    {step.title}
+                  </p>
+                  <p className="text-[16px] font-normal text-[#808080] leading-[1.4]">{step.desc}</p>
                 </div>
               </div>
-
-              <div className="flex items-end justify-end w-full">
-                <div className="flex gap-[12px] items-center">
-                  <Link to="/login" className="bg-white border border-[#dfe1e7] flex h-[48px] items-center justify-center overflow-hidden px-[16px] py-[12px] rounded-full hover:bg-[#f5f5f5] transition-colors">
-                    <span className="font-medium leading-[24px] text-[16px] text-[rgba(0,0,5,0.95)] whitespace-nowrap">
-                      Cancel
-                    </span>
-                  </Link>
-                  <button
-                    onClick={handleNext}
-                    disabled={!accountType}
-                    className={`flex h-[48px] items-center justify-center overflow-hidden px-[16px] py-[12px] rounded-full shadow-[0px_1px_3px_0px_rgba(13,13,18,0.05),0px_1px_2px_0px_rgba(13,13,18,0.04)] transition-colors ${accountType ? 'bg-[#0080ff] hover:bg-[#0066dd]' : 'bg-[#0080ff]/50 cursor-not-allowed'}`}
-                  >
-                    <span className="font-medium leading-[24px] text-[16px] text-white whitespace-nowrap">
-                      Sign up
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
+            ))}
+          </div>
         </div>
 
-        <Footer />
+        <Link to="/" className="flex items-center gap-2 text-[16px] font-medium text-[#666] leading-[1.4] hover:text-[#333] transition-colors">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 15l-5-5 5-5" stroke="#666" strokeWidth="1.667" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          Back to unidestin.com
+        </Link>
+      </div>
+
+      <div className="fixed inset-0 bg-black/40 z-40" />
+      <div className="flex-1 flex items-center justify-center p-4 sm:p-8 relative z-50">
+        <div className="bg-white border border-[#e6e6e6] rounded-2xl w-full max-w-[860px] p-6 sm:p-8 flex flex-col gap-8">
+          <div className="flex items-center justify-between p-1">
+            <h2 className="text-[20px] font-semibold text-[#333] leading-[1.4]">
+              Choose an account type
+            </h2>
+            <Link to="/login" className="size-5 flex items-center justify-center hover:opacity-70 transition-opacity shrink-0">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5l10 10" stroke="#333" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </Link>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <button
+              onClick={() => setSelected("student")}
+              className={`flex items-start gap-1 p-4 rounded-xl border transition-colors text-left ${
+                selected === "student" ? "border-[#007aff]" : "border-[#e9eaeb] hover:border-[#d5d7da]"
+              }`}
+            >
+              <div className="flex flex-1 gap-4 items-start min-w-0">
+                <div className="size-8 rounded-md bg-white border border-[#e9eaeb] flex items-center justify-center shrink-0 overflow-hidden">
+                  <img src="https://www.figma.com/api/mcp/asset/c685586f-edf7-4939-b04a-3cbda158220d" alt="" className="size-4" />
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-[16px] font-medium text-[#414651] leading-6">I want to learn</span>
+                    <span className="text-[12px] font-medium text-[#d9a055] bg-[#fcf7f1] rounded-full px-2 py-1 leading-[1.4]">Student account</span>
+                  </div>
+                  <p className="text-[14px] font-normal text-[#535862] leading-5">
+                    Includes up to 10 users, 20 GB individual data and access to all features.
+                  </p>
+                </div>
+              </div>
+              <div className="shrink-0">
+                {selected === "student" ? (
+                  <div className="size-5 rounded-md bg-[#0080ff] border border-[#0080ff] flex items-center justify-center overflow-hidden">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </div>
+                ) : (
+                  <div className="size-5 rounded-md border border-[#dfe1e7] bg-white" />
+                )}
+              </div>
+            </button>
+
+            <button
+              onClick={() => setSelected("tutor")}
+              className={`flex items-start gap-1 p-4 rounded-xl border transition-colors text-left ${
+                selected === "tutor" ? "border-[#007aff]" : "border-[#e9eaeb] hover:border-[#d5d7da]"
+              }`}
+            >
+              <div className="flex flex-1 gap-4 items-start min-w-0">
+                <div className="size-8 rounded-md bg-white border border-[#e9eaeb] flex items-center justify-center shrink-0 overflow-hidden">
+                  <img src="https://www.figma.com/api/mcp/asset/a707eb01-7be3-4418-a462-52f3b6045ec7" alt="" className="size-4" />
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-[16px] font-medium text-[#414651] leading-6">I want to teach</span>
+                    <span className="text-[12px] font-medium text-[#53a862] bg-[#f1f9f4] rounded-full px-2 py-1 leading-[1.4]">Tutor account</span>
+                  </div>
+                  <p className="text-[14px] font-normal text-[#535862] leading-5">
+                    Includes up to 10 users, 20 GB individual data and access to all features.
+                  </p>
+                </div>
+              </div>
+              <div className="shrink-0">
+                {selected === "tutor" ? (
+                  <div className="size-5 rounded-md bg-[#0080ff] border border-[#0080ff] flex items-center justify-center overflow-hidden">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </div>
+                ) : (
+                  <div className="size-5 rounded-md border border-[#dfe1e7] bg-white" />
+                )}
+              </div>
+            </button>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-baseline gap-1">
+              <span className="text-[14px] font-normal text-[#535862]">Already have an account?</span>
+              <Link to="/login" className="text-[14px] font-semibold text-[#007aff] hover:underline">Login</Link>
+            </div>
+            <div className="flex items-center gap-3">
+              <Link to="/login" className="h-12 px-4 border border-[#dfe1e7] rounded-full text-[16px] font-medium text-[rgba(0,0,5,0.95)] leading-6 flex items-center justify-center hover:bg-[#f5f5f5] transition-colors">
+                Cancel
+              </Link>
+              <button onClick={() => navigate("/register/details")} className="h-12 px-4 bg-[#0080ff] rounded-full text-[16px] font-medium text-white leading-6 flex items-center justify-center shadow-[0px_1px_3px_0px_rgba(13,13,18,0.05),0px_1px_2px_0px_rgba(13,13,18,0.04)] hover:bg-[#0066dd] transition-colors">
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

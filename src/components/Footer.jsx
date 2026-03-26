@@ -1,6 +1,3 @@
-const imgUni = "https://www.figma.com/api/mcp/asset/d1e0bc22-2cef-47b7-8ef3-ab1078de67ee"
-const imgVector = "https://www.figma.com/api/mcp/asset/3c748ed7-ba04-48eb-bf14-f7a94c50158c"
-
 const skillsMenu = [
   {
     title: "Web Development",
@@ -41,30 +38,27 @@ const footerMenu = [
 
 const Footer = () => {
   return (
-    <footer className="w-full pt-[64px] pb-[24px] px-[24px]">
-      <div className="bg-[#090909] rounded-[32px] p-[64px] flex flex-col gap-[32px] items-center w-full">
-        <div className="flex flex-col gap-[80px] items-start w-full">
-          <div className="flex flex-col gap-[64px] items-start w-full">
-            <div className="flex flex-col gap-[30px] items-start w-full">
-              <p className="text-white text-[16px] font-medium leading-[24px]">
+    <footer className="w-full pt-10 md:pt-16 pb-4 md:pb-6 px-3 sm:px-4 md:px-6">
+      <div className="bg-[#090909] rounded-2xl sm:rounded-3xl md:rounded-[32px] p-6 sm:p-8 md:p-10 lg:p-16 flex flex-col gap-8 items-center w-full">
+        <div className="flex flex-col gap-12 md:gap-20 items-start w-full">
+          <div className="flex flex-col gap-10 md:gap-16 items-start w-full">
+            <div className="flex flex-col gap-6 md:gap-8 items-start w-full">
+              <p className="text-white text-[16px] font-medium leading-6">
                 Explore top skills and certifications
               </p>
-              <div className="flex gap-[16px] items-start w-full">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 items-start w-full">
                 {skillsMenu.map((block, index) => (
-                  <div
-                    key={index}
-                    className={`flex flex-col gap-[12px] items-start ${index === 0 ? 'w-[205px]' : index === 3 ? 'w-[206px]' : 'w-[316px]'}`}
-                  >
-                    <p className="text-white text-[16px] font-medium leading-[24px] w-full">
+                  <div key={index} className="flex flex-col gap-3 items-start">
+                    <p className="text-white text-[16px] font-medium leading-6">
                       {block.title}
                     </p>
-                    <div className="flex flex-col items-start w-full">
+                    <div className="flex flex-col items-start">
                       {block.items.map((item, itemIndex) => (
                         <div
                           key={itemIndex}
-                          className="flex items-center py-[4px] cursor-pointer hover:opacity-80 transition-opacity"
+                          className="flex items-center py-1 cursor-pointer hover:opacity-80 transition-opacity"
                         >
-                          <p className="text-[#999] text-[16px] font-medium leading-[24px] whitespace-nowrap">
+                          <p className="text-[#999] text-[14px] md:text-[16px] font-medium leading-6">
                             {item}
                           </p>
                         </div>
@@ -75,22 +69,19 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="flex gap-[16px] items-start w-full">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 items-start w-full">
               {footerMenu.map((block, index) => (
-                <div
-                  key={index}
-                  className={`flex flex-col gap-[16px] items-start ${index === 0 ? 'w-[205px]' : index === 1 ? 'w-[316px]' : index === 2 ? 'w-[315px]' : 'flex-1'}`}
-                >
-                  <p className="text-white text-[16px] font-medium leading-[24px] w-full">
+                <div key={index} className="flex flex-col gap-4 items-start">
+                  <p className="text-white text-[16px] font-medium leading-6">
                     {block.title}
                   </p>
-                  <div className="flex flex-col items-start w-full">
+                  <div className="flex flex-col items-start">
                     {block.items.map((item, itemIndex) => (
                       <div
                         key={itemIndex}
-                        className="flex items-center py-[4px] cursor-pointer hover:opacity-80 transition-opacity"
+                        className="flex items-center py-1 cursor-pointer hover:opacity-80 transition-opacity"
                       >
-                        <p className="text-[#999] text-[16px] font-medium leading-[24px] whitespace-nowrap">
+                        <p className="text-[#999] text-[14px] md:text-[16px] font-medium leading-6">
                           {item}
                         </p>
                       </div>
@@ -101,33 +92,26 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="flex items-end justify-between w-full">
-            <div className="flex flex-col gap-[12px] items-start flex-1">
-              <div className="h-[32px] w-[186px] relative">
-                <div className="absolute inset-[0.6%_15.77%_0.73%_0]">
-                  <img alt="" className="absolute block max-w-none size-full" src={imgUni} />
-                </div>
-                <div className="absolute inset-[0_0_0_36.65%]">
-                  <img alt="" className="absolute block max-w-none size-full" src={imgVector} />
-                </div>
-              </div>
-              <p className="text-[#999] text-[16px] font-medium leading-[24px] max-w-[280px]">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 lg:gap-4 w-full">
+            <div className="flex flex-col gap-3 items-start">
+              <img src="/img/logo.svg" alt="Unidestin" className="h-7 brightness-0 invert" />
+              <p className="text-[#999] text-[14px] md:text-[16px] font-medium leading-6 max-w-[280px]">
                 Unidestin helps creators build content with clarity, consistency, and purpose.
               </p>
             </div>
 
-            <div className="flex flex-col gap-[12px] items-start">
-              <p className="text-white text-[16px] font-medium leading-[24px]">
+            <div className="flex flex-col gap-3 items-start lg:items-start w-full lg:w-auto lg:max-w-[538px]">
+              <p className="text-white text-[16px] font-medium leading-6">
                 Don't miss updates
               </p>
-              <div className="flex flex-col items-center relative w-[538px]">
-                <div className="bg-[#161616] flex items-start overflow-hidden pl-[32px] pr-[152px] py-[22px] rounded-[32px] w-full">
-                  <p className="text-[#666] text-[16px] font-medium leading-[24px] flex-1">
+              <div className="flex flex-col items-center relative w-full lg:w-[538px]">
+                <div className="bg-[#161616] flex items-start overflow-hidden pl-6 sm:pl-8 pr-32 sm:pr-[152px] py-4 sm:py-[22px] rounded-3xl sm:rounded-[32px] w-full">
+                  <p className="text-[#666] text-[16px] font-medium leading-6 flex-1">
                     Email address
                   </p>
                 </div>
-                <button className="absolute right-[8px] top-1/2 -translate-y-1/2 bg-[#007aff] flex items-center justify-center py-[13px] px-[20px] rounded-full hover:bg-[#0066dd] transition-colors">
-                  <span className="text-white text-[16px] font-medium leading-[1.24] tracking-[-0.32px] whitespace-nowrap">
+                <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#007aff] flex items-center justify-center py-2.5 sm:py-[13px] px-4 sm:px-5 rounded-full hover:bg-[#0066dd] transition-colors">
+                  <span className="text-white text-[14px] sm:text-[16px] font-medium leading-[1.24] tracking-[-0.32px] whitespace-nowrap">
                     Subscribe
                   </span>
                 </button>
@@ -136,19 +120,19 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-[#333] flex items-center justify-between pt-[28px] w-full">
-          <p className="text-[#666] text-[16px] font-medium leading-[24px] whitespace-nowrap">
+        <div className="border-t border-[#333] flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0 pt-6 md:pt-7 w-full">
+          <p className="text-[#666] text-[14px] md:text-[16px] font-medium leading-6 whitespace-nowrap">
             © 2026, All Rights Reserved
           </p>
-          <div className="flex gap-[12px] items-center">
-            <div className="flex items-center py-[4px] cursor-pointer hover:opacity-80 transition-opacity">
-              <p className="text-[#666] text-[16px] font-medium leading-[24px] text-center whitespace-nowrap">
+          <div className="flex gap-3 items-center">
+            <div className="flex items-center py-1 cursor-pointer hover:opacity-80 transition-opacity">
+              <p className="text-[#666] text-[14px] md:text-[16px] font-medium leading-6 text-center whitespace-nowrap">
                 Privacy Policy
               </p>
             </div>
-            <div className="bg-[#c6c5c8] rounded-full size-[4px]" />
-            <div className="flex items-center py-[4px] cursor-pointer hover:opacity-80 transition-opacity">
-              <p className="text-[#666] text-[16px] font-medium leading-[24px] text-center whitespace-nowrap">
+            <div className="bg-[#c6c5c8] rounded-full size-1" />
+            <div className="flex items-center py-1 cursor-pointer hover:opacity-80 transition-opacity">
+              <p className="text-[#666] text-[14px] md:text-[16px] font-medium leading-6 text-center whitespace-nowrap">
                 Licenses
               </p>
             </div>

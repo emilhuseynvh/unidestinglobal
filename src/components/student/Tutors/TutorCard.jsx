@@ -55,7 +55,7 @@ const TutorCard = ({ tutor }) => {
           <span className="text-[20px] sm:text-[22px] font-semibold text-[#181d27]">${tutor.price}</span>
           <span className="text-[13px] text-[#717680]">/ 1 hour</span>
         </div>
-        <Link to={`/tutors/${tutor.id}`} className="bg-[#007aff] text-white text-[14px] font-semibold leading-5 px-5 py-2.5 rounded-full hover:bg-[#0066d6] transition-colors whitespace-nowrap text-center">
+        <Link to={`/student/tutors/${tutor.id}`} className="bg-[#007aff] text-white text-[14px] font-semibold leading-5 px-5 py-2.5 rounded-full hover:bg-[#0066d6] transition-colors whitespace-nowrap text-center">
           View Profile
         </Link>
       </div>

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router"
-import Header from "../components/Header"
-import PageLoader from "../components/PageLoader"
-import BadgesSection from "../components/Achievements/BadgesSection"
+import PageLoader from "../../components/PageLoader"
+import BadgesSection from "../../components/student/Achievements/BadgesSection"
 
 const tabs = ["Certifications", "Badges"]
 
@@ -9,12 +8,12 @@ const AchievementsBadges = () => {
   const navigate = useNavigate()
 
   const handleTabChange = (tab) => {
-    if (tab === "Certifications") navigate("/achievements")
+    if (tab === "Certifications") navigate("/student/achievements")
   }
 
   return (
     <section className="w-full">
-      <Header />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-20 py-8 md:py-12 flex flex-col gap-6">
         <h1 className="text-[22px] sm:text-[26px] font-semibold text-[#181d27] leading-tight">
           My Achivements

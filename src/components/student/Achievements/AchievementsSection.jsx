@@ -77,7 +77,7 @@ const AchievementsSection = () => {
         {tabs.map((tab) => (
           <button
             key={tab}
-            onClick={() => tab === "Badges" && navigate("/achievements/badges")}
+            onClick={() => tab === "Badges" && navigate("/student/achievements/badges")}
             className={`px-3 py-2.5 text-[14px] font-medium leading-5 whitespace-nowrap transition-colors relative ${
               activeTab === tab ? "text-[#007aff]" : "text-[#717680] hover:text-[#414651]"
             }`}

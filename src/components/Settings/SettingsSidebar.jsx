@@ -1,11 +1,11 @@
 import { Link, useLocation } from "react-router"
 
 const menuItems = [
-  { label: "Profile", path: "/settings/profile" },
-  { label: "Password", path: "/settings/password" },
-  { label: "Billing", path: "/settings/billing" },
-  { label: "Parents details", path: "/settings/parents" },
-  { label: "Notifications", path: "/settings/notifications", badge: "2" },
+  { label: "Profile", path: "/student/settings/profile" },
+  { label: "Password", path: "/student/settings/password" },
+  { label: "Billing", path: "/student/settings/billing" },
+  { label: "Parents details", path: "/student/settings/parents" },
+  { label: "Notifications", path: "/student/settings/notifications", badge: "2" },
 ]
 
 const SettingsSidebar = () => {
@@ -16,7 +16,7 @@ const SettingsSidebar = () => {
       <p className="text-[14px] font-semibold text-[#717680] leading-5 px-3 py-2">My details</p>
       <div className="flex lg:flex-col gap-1 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 -mx-4 px-4 sm:-mx-6 sm:px-6 md:-mx-10 md:px-10 lg:mx-0 lg:px-0">
       {menuItems.map((item) => {
-        const isActive = location.pathname === item.path || (item.path === "/settings/profile" && location.pathname === "/settings")
+        const isActive = location.pathname === item.path || (item.path === "/student/settings/profile" && location.pathname === "/student/settings")
         return (
           <Link
             key={item.path}

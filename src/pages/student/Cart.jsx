@@ -1,7 +1,6 @@
-import Header from "../components/Header"
-import CartItem from "../components/Cart/CartItem"
-import CartSummary from "../components/Cart/CartSummary"
-import TutorCourseCard from "../components/TutorDetail/TutorCourseCard"
+import CartItem from "../../components/student/Cart/CartItem"
+import CartSummary from "../../components/student/Cart/CartSummary"
+import TutorCourseCard from "../../components/student/TutorDetail/TutorCourseCard"
 
 const cartItems = [
   {
@@ -78,7 +77,7 @@ const suggestedCourses = [
 const Cart = () => {
   return (
     <section className="w-full">
-      <Header />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-20 py-8 md:py-12 flex flex-col gap-8 md:gap-10">
         <h1 className="text-[22px] sm:text-[26px] font-semibold text-[#181d27] leading-tight">
           My Cart ({cartItems.length})

@@ -1,4 +1,4 @@
-import Navbar from '../components/Header'
+import Navbar from '../components/GuideHeader'
 import HeroSection from '../components/StudyAbroad/HeroSection'
 import PartnersSection from '../components/StudyAbroad/PartnersSection'
 import JourneySection from '../components/StudyAbroad/JourneySection'
@@ -12,7 +12,7 @@ import Footer from '../components/Footer'
 const StudyAbroad = () => {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <div className="w-[1440px] mx-auto relative">
+      <div className="max-w-[1440px] w-full mx-auto relative">
         <div style={{ filter: 'drop-shadow(0 27px 60px rgba(0, 0, 0, 0.12))' }} className="absolute top-4 left-[25px] w-[1391px] h-[703px] bg-[#8BC398] rounded-[26px] shadow-[0px_27px_60px_0px_rgba(0,0,0,0.12)]" />
         <div className="relative z-10">
           <Navbar />

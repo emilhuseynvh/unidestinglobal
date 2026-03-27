@@ -1,6 +1,6 @@
 const HeroSection = () => {
   return (
-    <section className="w-[1440px] mx-auto">
+    <section className="max-w-[1440px] w-full mx-auto">
       <div className="flex flex-col items-center gap-8 pt-[140px] pb-[140px]">
         <div className="flex flex-col items-center gap-5 w-[922px]">
           <div className="flex flex-wrap justify-center items-end gap-y-2 w-full">

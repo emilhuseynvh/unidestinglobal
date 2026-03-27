@@ -5,7 +5,7 @@ import CTABanner from '../components/FAQ/CTABanner'
 const FAQ = () => {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <div className="w-[1440px] mx-auto relative">
+      <div className="max-w-[1440px] w-full mx-auto relative">
         <HeroSection />
         <FAQContentSection />
         <CTABanner />

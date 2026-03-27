@@ -48,7 +48,7 @@ const UpcomingTimeline = () => {
               <span className="text-[12px] sm:text-[13px] text-[#717680] leading-5">Friday</span>
             </div>
           </div>
-          <Link to="/schedule" className="text-[13px] sm:text-[14px] font-medium text-[#181d27] border border-[#d5d7da] rounded-lg px-4 py-2 hover:bg-[#f9f9f9] transition-colors whitespace-nowrap shadow-[0px_1px_2px_0px_rgba(10,13,18,0.05)] self-start sm:self-auto shrink-0">
+          <Link to="/student/schedule" className="text-[13px] sm:text-[14px] font-medium text-[#181d27] border border-[#d5d7da] rounded-lg px-4 py-2 hover:bg-[#f9f9f9] transition-colors whitespace-nowrap shadow-[0px_1px_2px_0px_rgba(10,13,18,0.05)] self-start sm:self-auto shrink-0">
             View full schedule
           </Link>
         </div>

@@ -5,7 +5,7 @@ const tabs = [
   { label: "Today", value: "today" },
   { label: "Active Courses", value: "active" },
   { label: "Past Lessons", value: "past" },
-  { label: "My Scheldue", value: "schedule", path: "/schedule" },
+  { label: "My Scheldue", value: "schedule", path: "/student/schedule" },
   { label: "My list", value: "list" },
 ]
 

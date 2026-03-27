@@ -30,7 +30,7 @@ const SettingsIcon = () => (
   </svg>
 )
 
-const Header = () => {
+const StudentHeader = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [notifOpen, setNotifOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
@@ -277,4 +277,4 @@ const Header = () => {
   )
 }
 
-export default Header;
+export default StudentHeader;

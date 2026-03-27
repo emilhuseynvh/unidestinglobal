@@ -27,7 +27,7 @@ const steps = [
 
 const JourneySection = () => {
   return (
-    <section className="w-[1440px] mx-auto bg-white overflow-hidden relative h-[893px]">
+    <section className="max-w-[1440px] w-full mx-auto bg-white overflow-hidden relative h-[893px]">
       <div className="absolute left-[784px] top-[128px] w-[480px] h-[633px] rounded-[24px] overflow-hidden">
         <div className="absolute inset-0 bg-[#fafafa] rounded-[24px]" />
         <img

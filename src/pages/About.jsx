@@ -9,7 +9,7 @@ import CTABanner from '../components/About/CTABanner'
 const About = () => {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <div className="w-[1440px] mx-auto relative px-[24px] pt-[16px]">
+      <div className="max-w-[1440px] w-full mx-auto relative px-4 sm:px-6 pt-4">
         <HeroSection />
         <FeaturesSection />
         <ImpactSection />

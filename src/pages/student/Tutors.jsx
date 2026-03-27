@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
-import Header from "../components/Header"
-import TutorFilters from "../components/Tutors/TutorFilters"
-import TutorList from "../components/Tutors/TutorList"
+import TutorFilters from "../../components/student/Tutors/TutorFilters"
+import TutorList from "../../components/student/Tutors/TutorList"
 
 const SkeletonCard = () => (
   <div className="border border-[#e9eaeb] rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row gap-4 animate-pulse">
@@ -50,7 +49,7 @@ const Tutors = () => {
 
   return (
     <section className="w-full">
-      <Header />
+      
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-10 lg:px-20 py-8 md:py-12 flex flex-col gap-6 md:gap-8">
         <div>
           <h1 className="text-[22px] sm:text-[26px] font-semibold text-[#181d27] leading-tight">

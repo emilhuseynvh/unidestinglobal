@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
-import Header from "../components/Header"
-import HeroSection from "../components/Explore/HeroSection"
-import CourseList from "../components/Explore/CourseList"
+import HeroSection from "../../components/student/Explore/HeroSection"
+import CourseList from "../../components/student/Explore/CourseList"
 
 const SkeletonCard = () => (
   <div className="border border-[#e9eaeb] rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row gap-4 animate-pulse">
@@ -69,7 +68,7 @@ const Explore = () => {
 
   return (
     <section className="w-full">
-      <Header />
+      
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-10 lg:px-20 py-8 md:py-12 flex flex-col gap-8 md:gap-12">
         <HeroSection />
         {loading ? <LoadingSkeleton /> : <CourseList />}

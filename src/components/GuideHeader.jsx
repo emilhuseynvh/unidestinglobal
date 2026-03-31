@@ -27,9 +27,9 @@ const GuideHeader = () => {
             <Link to="/study-abroad" className="flex items-center h-12 px-3 py-1 rounded-xl hover:bg-[rgba(0,0,0,0.03)] transition-colors">
               <span className="text-[#5b616d] text-base font-medium leading-6 whitespace-nowrap">Study abroad</span>
             </Link>
-            <a href="#" className="flex items-center h-12 px-3 py-1 rounded-xl hover:bg-[rgba(0,0,0,0.03)] transition-colors">
+            <Link to="/programs" className="flex items-center h-12 px-3 py-1 rounded-xl hover:bg-[rgba(0,0,0,0.03)] transition-colors">
               <span className="text-[#5b616d] text-base font-medium leading-6 whitespace-nowrap">Services</span>
-            </a>
+            </Link>
           </div>
 
           <div className="flex items-center gap-2">
@@ -79,9 +79,9 @@ const GuideHeader = () => {
             <Link to="/study-abroad" onClick={() => setMenuOpen(false)} className="flex items-center h-12 px-4 rounded-xl hover:bg-[rgba(0,0,0,0.03)] transition-colors">
               <span className="text-[#5b616d] text-base font-medium leading-6">Study abroad</span>
             </Link>
-            <a href="#" className="flex items-center h-12 px-4 rounded-xl hover:bg-[rgba(0,0,0,0.03)] transition-colors">
+            <Link to="/programs" onClick={() => setMenuOpen(false)} className="flex items-center h-12 px-4 rounded-xl hover:bg-[rgba(0,0,0,0.03)] transition-colors">
               <span className="text-[#5b616d] text-base font-medium leading-6">Services</span>
-            </a>
+            </Link>
             <div className="border-t border-[#e9eaeb] my-3" />
             <div className="flex flex-col gap-3">
               <button className="h-12 bg-[rgba(242,242,244,0.8)] border border-[rgba(0,0,0,0.06)] rounded-xl">

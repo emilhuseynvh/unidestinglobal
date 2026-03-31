@@ -1,3 +1,17 @@
+import { Link } from "react-router"
+
+const footerItemLinks = {
+  "Education news": "/news",
+  "About us": "/about",
+  "Contact us": "/contact",
+  "FAQ": "/faq",
+  "Find a tutor": "/find-a-tutor",
+  "Partners": "/partners",
+  "Online Library": "/online-library",
+  "Live Tutoring": "/live-tutoring",
+  "Terms of service": "/terms",
+}
+
 const skillsMenu = [
   {
     title: "Web Development",
@@ -76,16 +90,23 @@ const Footer = () => {
                     {block.title}
                   </p>
                   <div className="flex flex-col items-start">
-                    {block.items.map((item, itemIndex) => (
-                      <div
-                        key={itemIndex}
-                        className="flex items-center py-1 cursor-pointer hover:opacity-80 transition-opacity"
-                      >
+                    {block.items.map((item, itemIndex) => {
+                      const link = footerItemLinks[item]
+                      const content = (
                         <p className="text-[#999] text-[14px] md:text-[16px] font-medium leading-6">
                           {item}
                         </p>
-                      </div>
-                    ))}
+                      )
+                      return link ? (
+                        <Link key={itemIndex} to={link} className="flex items-center py-1 hover:opacity-80 transition-opacity">
+                          {content}
+                        </Link>
+                      ) : (
+                        <div key={itemIndex} className="flex items-center py-1 cursor-pointer hover:opacity-80 transition-opacity">
+                          {content}
+                        </div>
+                      )
+                    })}
                   </div>
                 </div>
               ))}

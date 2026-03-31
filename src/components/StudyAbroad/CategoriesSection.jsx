@@ -69,38 +69,38 @@ const LightningIcon = () => (
 
 const CategoriesSection = () => {
   return (
-    <section className="w-full py-24 px-16">
-      <div className="max-w-[1312px] mx-auto flex flex-col gap-8 items-center">
+    <section className="w-full py-12 sm:py-16 lg:py-24 px-4 sm:px-8 lg:px-16">
+      <div className="max-w-[1312px] mx-auto flex flex-col gap-6 sm:gap-8 items-center">
         <div className="flex flex-col gap-0.5 items-center text-center text-[#18191b] w-full">
-          <h2 className="text-[34px] font-bold leading-[48px]">
+          <h2 className="text-[24px] sm:text-[28px] lg:text-[34px] font-bold leading-[1.3] sm:leading-[48px]">
             What do you want to study?
           </h2>
-          <p className="text-base font-normal leading-6">
+          <p className="text-sm sm:text-base font-normal leading-6">
             See our most popular categories and attach with your prefer programs
           </p>
         </div>
 
         <button className="flex items-center justify-center px-5 py-3.5 bg-[#007aff] rounded-full hover:bg-[#0066d6] transition-colors">
-          <span className="text-white text-base font-medium tracking-[-0.32px]">
+          <span className="text-white text-sm sm:text-base font-medium tracking-[-0.32px]">
             All programs
           </span>
         </button>
 
-        <div className="flex gap-4 w-full h-[270px]">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 w-full">
           {categories.map((category, index) => (
             <div
               key={index}
-              className={`${category.bgColor} flex flex-col items-center justify-center p-6 rounded-xl flex-1 cursor-pointer hover:shadow-lg transition-shadow`}
+              className={`${category.bgColor} flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl cursor-pointer hover:shadow-lg transition-shadow min-h-[180px] sm:min-h-[230px] lg:min-h-[270px]`}
             >
               <div className="flex flex-col gap-3 items-center">
-                <div className={`${category.iconBgColor} size-20 rounded-full flex items-center justify-center`}>
+                <div className={`${category.iconBgColor} w-14 h-14 sm:w-20 sm:h-20 rounded-full flex items-center justify-center`}>
                   {category.icon}
                 </div>
                 <div className="flex flex-col gap-1 items-center text-center">
-                  <h3 className="text-[#18191b] text-xl font-bold leading-[30px]">
+                  <h3 className="text-[#18191b] text-base sm:text-xl font-bold leading-[1.4] sm:leading-[30px]">
                     {category.name}
                   </h3>
-                  <p className="text-[#52565b] text-sm font-normal leading-[21px]">
+                  <p className="text-[#52565b] text-xs sm:text-sm font-normal leading-[1.4] sm:leading-[21px]">
                     {category.programs}
                   </p>
                 </div>
@@ -109,25 +109,27 @@ const CategoriesSection = () => {
           ))}
         </div>
 
-        <div className="w-full bg-[#9bd8a9] rounded-[20px] p-8 flex items-center justify-between relative overflow-hidden">
-          <div className="flex items-center gap-6 flex-1">
-            <LightningIcon />
+        <div className="w-full bg-[#9bd8a9] rounded-[20px] p-4 sm:p-6 lg:p-8 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 sm:justify-between relative overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-6 flex-1 text-center sm:text-left">
+            <div className="shrink-0">
+              <LightningIcon />
+            </div>
             <div className="flex flex-col gap-1">
-              <h3 className="text-[#1a1a1a] text-2xl font-semibold tracking-[-0.48px]">
+              <h3 className="text-[#1a1a1a] text-lg sm:text-2xl font-semibold tracking-[-0.48px]">
                 Best programs for you
               </h3>
-              <p className="text-[rgba(26,26,26,0.65)] text-lg font-medium tracking-[-0.36px]">
+              <p className="text-[rgba(26,26,26,0.65)] text-sm sm:text-lg font-medium tracking-[-0.36px]">
                 Answer a few questions and we'll match you with programs!
               </p>
             </div>
           </div>
-          <button className="flex items-center justify-center px-5 py-3.5 bg-white rounded-full hover:bg-gray-50 transition-colors z-10">
+          <button className="flex items-center justify-center px-5 py-3.5 bg-white rounded-full hover:bg-gray-50 transition-colors z-10 shrink-0 w-full sm:w-auto">
             <span className="text-black text-base font-medium tracking-[-0.32px]">
               Get Started
             </span>
           </button>
-          <div className="absolute right-0 top-[-100px] opacity-20">
-            <svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div className="absolute right-0 top-[-100px] opacity-20 hidden sm:block">
+            <svg width="400" height="300" viewBox="0 0 400 300" fill="none">
               <path d="M50 250C100 200 150 150 200 130C250 110 300 120 350 50" stroke="white" strokeWidth="40" strokeLinecap="round"/>
             </svg>
           </div>

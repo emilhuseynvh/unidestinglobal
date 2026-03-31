@@ -1,12 +1,12 @@
-const imgImage1 = "https://www.figma.com/api/mcp/asset/ca04f01d-39bb-4418-b384-c97d727f20ff"
-const imgImage2 = "https://www.figma.com/api/mcp/asset/576d3450-cb96-4908-9a27-c9f0b43b6892"
-const imgImage3 = "https://www.figma.com/api/mcp/asset/8e5908ad-33cd-4dbe-af51-de6c2bc789d9"
-const imgImage4 = "https://www.figma.com/api/mcp/asset/b9fc20f1-4ffb-4079-acff-c25ec01a4a4c"
-const imgImage = "https://www.figma.com/api/mcp/asset/fec6ad8c-1cb5-4638-b4dd-7ebdd361dde0"
-const imgImage5 = "https://www.figma.com/api/mcp/asset/91bd850b-16df-461c-b9e3-800bd49384f8"
-const imgIcon = "https://www.figma.com/api/mcp/asset/126f26f2-86c6-4159-94d2-1f990245db91"
-const imgVector1 = "https://www.figma.com/api/mcp/asset/c8bf9846-f251-4c8c-92fa-c33d7d65cc3d"
-const imgStars = "https://www.figma.com/api/mcp/asset/9640b0b4-c7c9-4531-bdf2-d3a5c6a193f9"
+const imgImage1 = "https://images.unsplash.com/photo-1562774053-701939374585?w=630&h=366&fit=crop"
+const imgImage2 = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=96&h=96&fit=crop"
+const imgImage3 = "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=96&h=96&fit=crop"
+const imgImage4 = "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=630&h=366&fit=crop"
+const imgImage = "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=630&h=366&fit=crop"
+const imgImage5 = "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?w=96&h=96&fit=crop"
+const imgIcon = "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=20&h=20&fit=crop"
+const imgVector1 = "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=20&h=20&fit=crop"
+const imgStars = "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=85&h=10&fit=crop"
 
 const filters = ["Turkey", "Germany", "China", "United States", "Australia"]
 
@@ -59,12 +59,12 @@ const universities = [
 
 const CoursesSection = () => {
   return (
-    <section className="w-full py-[80px] px-[64px]">
+    <section className="w-full py-10 sm:py-[80px] px-4 sm:px-8 lg:px-[64px]">
       <div className="max-w-[1312px] mx-auto flex flex-col gap-8 items-center">
-        <div className="flex flex-col items-center justify-center w-[647px]">
+        <div className="flex flex-col items-center justify-center w-full sm:w-[647px]">
           <div className="flex flex-col gap-5 items-center justify-center w-full">
             <div className="flex flex-col gap-4 items-center text-center w-full">
-              <p className="text-[#1a1a1a] text-[48px] font-semibold leading-none tracking-[-1.92px] w-full">
+              <p className="text-[#1a1a1a] text-[32px] sm:text-[48px] font-semibold leading-none tracking-[-1.92px] w-full">
                 Explore study abroad countries
               </p>
               <p className="text-[rgba(27,31,38,0.72)] text-[16px] font-normal leading-6 w-full">
@@ -85,7 +85,7 @@ const CoursesSection = () => {
         </div>
 
         <div className="flex flex-col gap-10 items-center w-full">
-          <div className="bg-white border border-[#f0f2f5] flex gap-3 items-center px-3 py-2 rounded-[33px] shadow-[4px_5px_11px_0px_rgba(0,0,0,0.05)]">
+          <div className="bg-white border border-[#f0f2f5] flex flex-wrap gap-3 items-center px-3 py-2 rounded-[33px] shadow-[4px_5px_11px_0px_rgba(0,0,0,0.05)]">
             <div className="flex h-10 items-center justify-center p-4 w-[54px] relative">
               <div className="absolute bg-[#9bd8a9] flex items-center justify-center left-[7px] p-6 rounded-full size-10 top-0">
                 <div className="overflow-hidden size-5 relative">
@@ -98,7 +98,7 @@ const CoursesSection = () => {
                 Canada
               </p>
             </div>
-            <div className="flex items-center">
+            <div className="flex flex-wrap items-center">
               {filters.map((filter, index) => (
                 <div
                   key={index}
@@ -112,11 +112,11 @@ const CoursesSection = () => {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-4 items-stretch w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch w-full">
             {universities.map((university) => (
               <div
                 key={university.id}
-                className="bg-white border border-[#e2e4e7] flex flex-col items-start overflow-hidden rounded-[12px] w-[315px] relative"
+                className="bg-white border border-[#e2e4e7] flex flex-col items-start overflow-hidden rounded-[12px] w-full relative"
               >
                 <div className="aspect-[315/183] w-full relative overflow-hidden">
                   <img

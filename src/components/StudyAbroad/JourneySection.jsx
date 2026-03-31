@@ -1,114 +1,81 @@
-const imgExplore = "https://www.figma.com/api/mcp/asset/86025cee-b060-45d1-82cf-8f2b7c7e2ab2"
-const imgFrame1116606966 = "https://www.figma.com/api/mcp/asset/64207637-9125-4cfb-811f-a343c17192d8"
-const imgVuesaxBoldArrowDown = "https://www.figma.com/api/mcp/asset/8ee87cf3-4ec0-4998-a270-b12b0ea94b91"
-const imgLine76 = "https://www.figma.com/api/mcp/asset/de3cee02-55b3-4503-9c34-183536d7c28f"
-const imgVector8 = "https://www.figma.com/api/mcp/asset/b73cf0c6-a4c9-45d2-aaa7-7b2d04f0d8e8"
-const imgVector9 = "https://www.figma.com/api/mcp/asset/b08011aa-84d5-458e-82f9-3ce1a1459042"
-const imgEllipse75 = "https://www.figma.com/api/mcp/asset/50958529-ef5a-435a-9257-9610c1426af7"
-const imgPlay = "https://www.figma.com/api/mcp/asset/11544df0-e85d-4588-8172-f0c3fce32d95"
+const ExploreIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2" />
+    <path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)
 
 const steps = [
-  {
-    number: "01",
-    title: "Explore Programs",
-    description: "Browse our diverse range of skill-based programs"
-  },
-  {
-    number: "02",
-    title: "Enroll & Learn",
-    description: "Join interactive lessons with industry experts"
-  },
-  {
-    number: "03",
-    title: "Apply & Grow",
-    description: "Use your new skills in real-world scenarios"
-  }
+  { number: "01", title: "Explore Programs", description: "Browse our diverse range of skill-based programs" },
+  { number: "02", title: "Enroll & Learn", description: "Join interactive lessons with industry experts" },
+  { number: "03", title: "Apply & Grow", description: "Use your new skills in real-world scenarios" },
 ]
 
 const JourneySection = () => {
   return (
-    <section className="max-w-[1440px] w-full mx-auto bg-white overflow-hidden relative h-[893px]">
-      <div className="absolute left-[784px] top-[128px] w-[480px] h-[633px] rounded-[24px] overflow-hidden">
-        <div className="absolute inset-0 bg-[#fafafa] rounded-[24px]" />
-        <img
-          src={imgFrame1116606966}
-          alt="Students"
-          className="absolute inset-0 w-full h-full object-cover rounded-[24px]"
-        />
-      </div>
+    <section className="max-w-[1440px] w-full mx-auto bg-white px-4 sm:px-8 lg:px-0 py-12 lg:py-0 lg:relative lg:min-h-[893px]">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-0">
+        <div className="w-full lg:absolute lg:left-[174px] lg:top-[128px] lg:w-[426px] flex flex-col gap-10 lg:gap-16">
+          <div className="flex flex-col gap-4">
+            <h2 className="text-[#1a1a1a] text-[32px] sm:text-[40px] lg:text-[48px] font-semibold leading-none tracking-[-1.92px]">
+              Begin your study abroad journey
+            </h2>
+            <p className="text-[#141219] text-base sm:text-lg leading-normal">
+              Self‑paced courses designed for students — created by tutors who've helped real applicants succeed.
+            </p>
+          </div>
 
-      <div className="absolute left-[174px] top-[128px] w-[426px] flex flex-col gap-16">
-        <div className="flex flex-col gap-4">
-          <h2 className="text-[#1a1a1a] text-[48px] font-semibold leading-none tracking-[-1.92px]">
-            Begin your study abroad journey
-          </h2>
-          <p className="text-[#141219] text-[18px] font-normal leading-normal">
-            Self‑paced courses designed for students — created by tutors who've helped real applicants succeed.
-          </p>
+          <div className="flex flex-col gap-8">
+            {steps.map((step) => (
+              <div key={step.number} className="flex gap-4 sm:gap-6 items-start">
+                <div className="flex items-center justify-center w-12 h-12 sm:w-[60px] sm:h-[60px] bg-[#9bd8a9] rounded-full shrink-0">
+                  <ExploreIcon />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="text-[#9bd8a9] text-sm sm:text-base font-medium">Step {step.number}</span>
+                  <p className="text-[#141219] text-base sm:text-lg">{step.title} – {step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="flex flex-col gap-8">
-          {steps.map((step, index) => (
-            <div key={index} className="flex gap-6 items-start">
-              <div className="flex items-center justify-center size-[60px] bg-[#9bd8a9] rounded-[30px] shrink-0 p-[18px]">
-                <img src={imgExplore} alt="explore" className="size-6" />
-              </div>
-              <div className="flex flex-col gap-2 flex-1">
-                <span className="text-[#9bd8a9] text-base font-medium">
-                  Step {step.number}
-                </span>
-                <p className="text-[#141219] text-[18px] font-normal">
-                  {step.title} – {step.description}
-                </p>
-              </div>
-            </div>
+        <div className="w-full max-w-[480px] lg:absolute lg:left-[784px] lg:top-[128px] lg:w-[480px] h-[350px] sm:h-[450px] lg:h-[633px] rounded-3xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=960&h=1266&fit=crop"
+            alt="Students studying abroad"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
+      <div className="hidden lg:block absolute left-[720px] top-[527px] w-[235px] h-[280px] bg-white rounded-3xl shadow-[-40px_40px_80px_0px_rgba(0,0,0,0.08)] overflow-hidden p-6">
+        <div className="flex flex-col gap-2">
+          <span className="text-[#141219] text-base">8-15 Jan</span>
+          <div className="flex items-center gap-2">
+            <span className="text-[#141219] text-lg font-bold">Week</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#141219" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </div>
+        </div>
+        <div className="mt-4 flex flex-col gap-0 relative h-[140px]">
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <div key={i} className="w-full h-6 border-t border-[#e5e5e5]" />
           ))}
+          <svg className="absolute left-0 top-0 w-full h-full" viewBox="0 0 186 140" fill="none">
+            <path d="M0 120 C30 110, 50 80, 80 70 S120 30, 137 20" stroke="#9bd8a9" strokeWidth="2" fill="none" />
+            <path d="M100 60 C110 40, 125 20, 137 20" stroke="#d4e8d8" strokeWidth="2" fill="none" />
+            <circle cx="117" cy="45" r="6" fill="#9bd8a9" />
+          </svg>
+          <div className="absolute left-[20px] top-[45px] bg-[#ebf5ed] rounded-full px-2 py-1">
+            <span className="text-[#488d59] text-sm font-medium">+60%</span>
+          </div>
+          <div className="absolute right-0 top-0 flex flex-col justify-between h-full text-right">
+            <span className="text-xs text-[#999]">4K</span>
+            <span className="text-xs text-[#999]">2K</span>
+            <span className="text-xs text-[#999]">0</span>
+          </div>
         </div>
-      </div>
-
-      <div className="absolute left-[720px] top-[527px] w-[235px] h-[280px] bg-white rounded-[24px] shadow-[-40px_40px_80px_0px_rgba(0,0,0,0.08)] overflow-hidden">
-        <p className="absolute left-6 top-6 text-[#141219] text-base font-normal">
-          8-15 Jan
-        </p>
-        <p className="absolute left-6 top-[234px] text-[#141219] text-base font-normal">
-          New students
-        </p>
-
-        <div className="absolute left-6 top-[54px] flex items-center gap-2">
-          <span className="text-[#141219] text-[18px] font-bold">Week</span>
-          <img src={imgVuesaxBoldArrowDown} alt="arrow" className="size-4" />
-        </div>
-
-        <div className="absolute left-6 top-[98px] w-[186px] h-0 border-t border-[#e5e5e5]" />
-        <div className="absolute left-6 top-[122px] w-[186px] h-0 border-t border-[#e5e5e5]" />
-        <div className="absolute left-6 top-[146px] w-[186px] h-0 border-t border-[#e5e5e5]" />
-        <div className="absolute left-6 top-[170px] w-[186px] h-0 border-t border-[#e5e5e5]" />
-        <div className="absolute left-6 top-[194px] w-[186px] h-0 border-t border-[#e5e5e5]" />
-        <div className="absolute left-6 top-[218px] w-[186px] h-0 border-t border-[#e5e5e5]" />
-
-        <div className="absolute left-[33px] top-[141px] bg-[#ebf5ed] rounded-[24px] px-2 py-2 flex items-center justify-center">
-          <span className="text-[#488d59] text-base font-medium">+60%</span>
-        </div>
-
-        <div className="absolute left-6 top-[95px] w-[137px] h-[117.571px]">
-          <img src={imgVector8} alt="chart" className="absolute inset-0 w-full h-full" />
-        </div>
-
-        <div className="absolute left-[125px] top-[95px] w-[36.5px] h-[81px]">
-          <img src={imgVector9} alt="chart line" className="absolute inset-0 w-full h-full" />
-        </div>
-
-        <div className="absolute left-[117px] top-[168px] size-4">
-          <img src={imgEllipse75} alt="dot" className="absolute inset-0 w-full h-full" />
-        </div>
-
-        <div className="absolute left-[136px] top-[50px] size-6">
-          <img src={imgPlay} alt="play" className="absolute inset-0 w-full h-full" />
-        </div>
-
-        <span className="absolute left-[191px] top-[201px] text-[#141219] text-base font-normal">0</span>
-        <span className="absolute left-[191px] top-[155px] text-[#141219] text-base font-normal">2K</span>
-        <span className="absolute left-[191px] top-[109px] text-[#141219] text-base font-normal">4K</span>
+        <span className="text-[#141219] text-base mt-2 block">New students</span>
       </div>
     </section>
   )

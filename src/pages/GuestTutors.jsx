@@ -133,7 +133,6 @@ const GuestTutors = () => {
           {!loading && <TutorProfileCard />}
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

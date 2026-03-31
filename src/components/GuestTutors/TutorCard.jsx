@@ -15,9 +15,11 @@ const LessonsIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 10a2 2 0 01-2 2H5.333L2 14.667V4a2 2 0 012-2h8a2 2 0 012 2v6z" stroke="#808080" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
 )
 
+import { Link } from "react-router"
+
 const TutorCard = ({ tutor }) => {
   return (
-    <div className="bg-[#f5f5f5] border border-[#e6e6e6] rounded-2xl p-3 sm:p-4">
+    <Link to={`/find-a-tutor/${tutor.id}`} className="block bg-[#f5f5f5] border border-[#e6e6e6] rounded-2xl p-3 sm:p-4 hover:shadow-md transition-shadow">
       <div className="flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4">
         <div className="flex gap-3 sm:gap-4 items-start w-full sm:w-auto">
           <div className="w-28 sm:w-40 self-stretch rounded-lg overflow-hidden bg-[#e9eaeb] shrink-0">
@@ -64,7 +66,7 @@ const TutorCard = ({ tutor }) => {
           <span className="text-[14px] font-normal text-[#666] leading-[1.4]">/ 1 hour</span>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

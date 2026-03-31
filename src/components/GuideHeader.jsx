@@ -18,9 +18,9 @@ const GuideHeader = () => {
           </Link>
 
           <div className="hidden lg:flex items-center gap-1">
-            <a href="#" className="flex items-center h-12 px-3 py-1 rounded-xl hover:bg-[rgba(0,0,0,0.03)] transition-colors">
+            <Link to="/courses" className="flex items-center h-12 px-3 py-1 rounded-xl hover:bg-[rgba(0,0,0,0.03)] transition-colors">
               <span className="text-[#5b616d] text-base font-medium leading-6 whitespace-nowrap">Explore</span>
-            </a>
+            </Link>
             <Link to="/find-a-tutor" className="flex items-center h-12 px-3 py-1 rounded-xl hover:bg-[rgba(0,0,0,0.03)] transition-colors">
               <span className="text-[#5b616d] text-base font-medium leading-6 whitespace-nowrap">Find a tutor</span>
             </Link>
@@ -70,9 +70,9 @@ const GuideHeader = () => {
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16 relative z-40 lg:hidden mt-2">
           <div className="bg-white rounded-2xl shadow-[0px_8px_24px_0px_rgba(0,0,0,0.1)] overflow-y-auto">
           <div className="flex flex-col p-4 sm:p-6 gap-1">
-            <a href="#" className="flex items-center h-12 px-4 rounded-xl hover:bg-[rgba(0,0,0,0.03)] transition-colors">
+            <Link to="/courses" onClick={() => setMenuOpen(false)} className="flex items-center h-12 px-4 rounded-xl hover:bg-[rgba(0,0,0,0.03)] transition-colors">
               <span className="text-[#5b616d] text-base font-medium leading-6">Explore</span>
-            </a>
+            </Link>
             <Link to="/find-a-tutor" className="flex items-center h-12 px-4 rounded-xl hover:bg-[rgba(0,0,0,0.03)] transition-colors">
               <span className="text-[#5b616d] text-base font-medium leading-6">Find a tutor</span>
             </Link>

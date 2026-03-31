@@ -12,6 +12,10 @@ import RegisterVerify from "../pages/RegisterVerify";
 import RegisterParent from "../pages/RegisterParent";
 import RegisterComplete from "../pages/RegisterComplete";
 import GuestTutors from "../pages/GuestTutors";
+import GuestTutorDetail from "../pages/GuestTutorDetail";
+import Community from "../pages/Community";
+import Courses from "../pages/Courses";
+import CourseDetail from "../pages/CourseDetail";
 import News from "../pages/News";
 import NewsDetail from "../pages/NewsDetail";
 import Partners from "../pages/Partners";
@@ -21,6 +25,7 @@ import ProgramDetail from "../pages/ProgramDetail";
 import LiveTutoring from "../pages/LiveTutoring";
 import Terms from "../pages/Terms";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
+import Home from "../pages/Home";
 
 import Dashboard from "../pages/student/Dashboard";
 import MyCourses from "../pages/student/MyCourses";
@@ -45,8 +50,8 @@ import Notifications from "../pages/settings/Notifications";
 export const router = createBrowserRouter(
     createRoutesFromElements(
         <>
-            <Route path="/" element={<StudentLayout />}>
-                <Route index element={<Dashboard />} />
+            <Route path="/" element={<PublicPageLayout />}>
+                <Route index element={<Home />} />
             </Route>
             <Route path="/" element={<PublicPageLayout />}>
                 <Route path="study-abroad" element={<StudyAbroad />} />
@@ -54,6 +59,7 @@ export const router = createBrowserRouter(
                 <Route path="contact" element={<Contact />} />
                 <Route path="faq" element={<FAQ />} />
                 <Route path="find-a-tutor" element={<GuestTutors />} />
+                <Route path="find-a-tutor/:id" element={<GuestTutorDetail />} />
                 <Route path="news" element={<News />} />
                 <Route path="news/:id" element={<NewsDetail />} />
                 <Route path="partners" element={<Partners />} />
@@ -61,6 +67,9 @@ export const router = createBrowserRouter(
                 <Route path="programs" element={<ProgramsPage />} />
                 <Route path="programs/:id" element={<ProgramDetail />} />
                 <Route path="live-tutoring" element={<LiveTutoring />} />
+                <Route path="community" element={<Community />} />
+                <Route path="courses" element={<Courses />} />
+                <Route path="courses/:id" element={<CourseDetail />} />
                 <Route path="terms" element={<Terms />} />
                 <Route path="privacy-policy" element={<PrivacyPolicy />} />
             </Route>

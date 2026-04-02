@@ -1,0 +1,51 @@
+const LiveCourseHero = () => {
+  return (
+    <div className="flex flex-col lg:flex-row gap-3">
+      <div className="w-full lg:w-[378px] h-[214px] rounded-[18px] overflow-hidden shrink-0 border-4 border-white shadow-[0px_16px_48px_-4px_rgba(26,26,26,0.2)]">
+        <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=220&fit=crop" alt="Course" className="w-full h-full object-cover" />
+      </div>
+      <div className="bg-white border border-black/[0.06] rounded-[18px] p-6 flex-1 min-w-0">
+        <div className="flex flex-col gap-[10px]">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="bg-[rgba(64,155,63,0.12)] h-6 px-1.5 rounded-lg text-xs font-medium text-[#338732] flex items-center gap-1">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11.667 3.5L5.25 9.917 2.333 7" stroke="#338732" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              Live
+            </span>
+            <span className="bg-[rgba(237,64,48,0.12)] h-6 px-1.5 rounded-lg text-xs font-medium text-[#df2917] flex items-center">Live Class Course</span>
+            <span className="bg-[rgba(255,195,10,0.12)] h-6 px-1.5 rounded-lg text-xs font-medium text-[#e4a000] flex items-center">Advanced</span>
+            <span className="bg-[rgba(255,195,10,0.12)] h-6 px-1.5 rounded-lg text-xs font-medium text-[#e4a000] flex items-center">Biology</span>
+            <span className="flex items-center gap-1.5 text-[12.5px] text-[#f06060]">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5.5" stroke="#f06060" strokeWidth="1.2" /><path d="M6.5 3.25v3.25l2.167 1.083" stroke="#f06060" strokeWidth="1.2" strokeLinecap="round" /></svg>
+              Next: Apr 3, 2026
+            </span>
+          </div>
+          <h1 className="text-[25px] font-semibold text-[#0a0c11] leading-9 tracking-[-0.2px]">AP Biology Weekly Group — Spring 2026</h1>
+          <p className="text-sm text-[#5b616d] leading-5 max-w-[500px]">Interactive weekly live sessions covering AP Biology curriculum with Q&A, practice problems, and exam strategy. Recordings included.</p>
+          <div className="flex flex-wrap items-center gap-4 text-xs text-[#5b616d] leading-4">
+            <span className="flex items-center gap-1.5">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10.667 14v-1.333a2.667 2.667 0 00-2.667-2.667H4a2.667 2.667 0 00-2.667 2.667V14M6 7.333A2.667 2.667 0 106 2a2.667 2.667 0 000 5.333zM14 14v-1.333a2.667 2.667 0 00-2-2.58M10 2.087a2.667 2.667 0 010 5.16" stroke="#5b616d" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              12 / 15 seats filled
+            </span>
+            <span className="w-[3px] h-[3px] rounded-full bg-[#5b616d]" />
+            <span className="flex items-center gap-1.5">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14c-1.467-1.067-3.2-1.6-4.933-1.6-.573 0-1.147.06-1.734.178V3.822A9.2 9.2 0 013.067 3.6C4.8 3.6 6.533 4.133 8 5m0 9c1.467-1.067 3.2-1.6 4.933-1.6.587 0 1.16.06 1.734.178V3.822A9.2 9.2 0 0012.933 3.6C11.2 3.6 9.467 4.133 8 5" stroke="#5b616d" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              Every Thursday · 4:00 PM
+            </span>
+            <span className="w-[3px] h-[3px] rounded-full bg-[#5b616d]" />
+            <span className="flex items-center gap-1.5">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#5b616d" strokeWidth="1.2" /><path d="M8 4v4l2.667 1.333" stroke="#5b616d" strokeWidth="1.2" strokeLinecap="round" /></svg>
+              60 min per session
+            </span>
+            <span className="w-[3px] h-[3px] rounded-full bg-[#5b616d]" />
+            <span className="flex items-center gap-1.5">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.333v13.334M11.333 3.333H6.333a2.333 2.333 0 000 4.667h3.334a2.333 2.333 0 010 4.667H4" stroke="#5b616d" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              $25 / session
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default LiveCourseHero

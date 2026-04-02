@@ -20,6 +20,23 @@ import TutorRegister from "../pages/tutor/TutorRegister";
 import TutorRegisterEducation from "../pages/tutor/TutorRegisterEducation";
 import TutorRegisterTraining from "../pages/tutor/TutorRegisterTraining";
 import TutorRegisterTraining2 from "../pages/tutor/TutorRegisterTraining2";
+import TutorLayout from "../layouts/TutorLayout";
+import TutorDashboard from "../pages/tutor/TutorDashboard";
+import EditProfileBasic from "../pages/tutor/EditProfileBasic";
+import EditProfileBio from "../pages/tutor/EditProfileBio";
+import EditProfileVideo from "../pages/tutor/EditProfileVideo";
+import EditProfileAvailability from "../pages/tutor/EditProfileAvailability";
+import EditProfileCertificates from "../pages/tutor/EditProfileCertificates"
+import TutorCoursesPage from "../pages/tutor/TutorCourses"
+import SelfPacedCourseDetail from "../pages/tutor/SelfPacedCourseDetail";
+import LiveCourseDetail from "../pages/tutor/LiveCourseDetail";
+import CreateSelfPacedCourse from "../pages/tutor/CreateSelfPacedCourse";
+import CreateLiveClass from "../pages/tutor/CreateLiveClass";
+import CoursePublished from "../pages/tutor/CoursePublished";
+import TutorClasses from "../pages/tutor/TutorClasses";
+import TutorStudents from "../pages/tutor/TutorStudents";
+import TutorExams from "../pages/tutor/TutorExams";
+import CreateExam from "../pages/tutor/CreateExam";
 import News from "../pages/News";
 import NewsDetail from "../pages/NewsDetail";
 import Partners from "../pages/Partners";
@@ -110,6 +127,25 @@ export const router = createBrowserRouter(
             <Route path="tutor/register/education" element={<TutorRegisterEducation />} />
             <Route path="tutor/register/training" element={<TutorRegisterTraining />} />
             <Route path="tutor/register/training/step2" element={<TutorRegisterTraining2 />} />
+            <Route path="/tutor" element={<TutorLayout />}>
+                <Route index element={<TutorDashboard />} />
+                <Route path="dashboard" element={<TutorDashboard />} />
+                <Route path="edit-profile" element={<EditProfileBasic />} />
+                <Route path="edit-profile/bio" element={<EditProfileBio />} />
+                <Route path="edit-profile/video" element={<EditProfileVideo />} />
+                <Route path="edit-profile/availability" element={<EditProfileAvailability />} />
+                <Route path="edit-profile/certificates" element={<EditProfileCertificates />} />
+                <Route path="courses" element={<TutorCoursesPage />} />
+                <Route path="classes" element={<TutorClasses />} />
+                <Route path="students" element={<TutorStudents />} />
+                <Route path="exams" element={<TutorExams />} />
+                <Route path="exams/create" element={<CreateExam />} />
+                <Route path="courses/:id" element={<SelfPacedCourseDetail />} />
+                <Route path="courses/live/:id" element={<LiveCourseDetail />} />
+                <Route path="courses/create-self-paced" element={<CreateSelfPacedCourse />} />
+                <Route path="courses/create-live-class" element={<CreateLiveClass />} />
+                <Route path="courses/published" element={<CoursePublished />} />
+            </Route>
         </>
     )
 )

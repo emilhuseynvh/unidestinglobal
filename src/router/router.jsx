@@ -37,6 +37,11 @@ import TutorClasses from "../pages/tutor/TutorClasses";
 import TutorStudents from "../pages/tutor/TutorStudents";
 import TutorExams from "../pages/tutor/TutorExams";
 import CreateExam from "../pages/tutor/CreateExam";
+import ExamPublished from "../pages/tutor/ExamPublished";
+import TutorSchedulePage from "../pages/tutor/TutorSchedule";
+import TutorEarnings from "../pages/tutor/TutorEarnings";
+import TutorPerformance from "../pages/tutor/TutorPerformance";
+import TutorSettings from "../pages/tutor/TutorSettings";
 import News from "../pages/News";
 import NewsDetail from "../pages/NewsDetail";
 import Partners from "../pages/Partners";
@@ -140,6 +145,11 @@ export const router = createBrowserRouter(
                 <Route path="students" element={<TutorStudents />} />
                 <Route path="exams" element={<TutorExams />} />
                 <Route path="exams/create" element={<CreateExam />} />
+                <Route path="exams/published" element={<ExamPublished />} />
+                <Route path="schedule" element={<TutorSchedulePage />} />
+                <Route path="earnings" element={<TutorEarnings />} />
+                <Route path="performance" element={<TutorPerformance />} />
+                <Route path="settings" element={<TutorSettings />} />
                 <Route path="courses/:id" element={<SelfPacedCourseDetail />} />
                 <Route path="courses/live/:id" element={<LiveCourseDetail />} />
                 <Route path="courses/create-self-paced" element={<CreateSelfPacedCourse />} />

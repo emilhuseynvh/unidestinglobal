@@ -62,7 +62,7 @@ const StatsCards = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, i) => (
-          <div key={i} className="bg-white border border-white/[0.07] rounded-[18px] p-5 flex flex-col items-center overflow-hidden">
+          <div key={i} className="bg-white border border-black/[0.06] rounded-[18px] p-5 flex flex-col items-center overflow-hidden">
             <div className="flex flex-col gap-6 w-full">
               <div className="flex flex-col gap-4">
                 <div className={`w-9 h-9 rounded-full ${stat.iconBg} flex items-center justify-center`}>

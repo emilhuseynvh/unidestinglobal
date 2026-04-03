@@ -167,7 +167,7 @@ const TutorStudents = () => {
       {/* ── Stats Cards ── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((s, i) => (
-          <div key={i} className="bg-[#f9f9fa] border border-black/[0.06] rounded-[18px] overflow-hidden p-5 flex flex-col gap-4">
+          <div key={i} className="bg-white border border-black/[0.06] rounded-[18px] overflow-hidden p-5 flex flex-col gap-4">
             <div className={`w-9 h-9 rounded-full ${s.iconBg} flex items-center justify-center`}>{s.icon}</div>
             <div className="flex flex-col gap-1">
               <span className="text-[25px] font-bold text-[#0a0c11] leading-9 tracking-[-0.2px]">{s.value}</span>

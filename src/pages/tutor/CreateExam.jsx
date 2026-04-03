@@ -6,6 +6,7 @@ import BasicDetailsStep from "../../components/tutor/CreateExam/BasicDetailsStep
 import QuestionsStep from "../../components/tutor/CreateExam/QuestionsStep"
 import AssignStudentsStep from "../../components/tutor/CreateExam/AssignStudentsStep"
 import SettingsStep from "../../components/tutor/CreateExam/SettingsStep"
+import ReviewPublishStep from "../../components/tutor/CreateExam/ReviewPublishStep"
 
 const CreateExam = () => {
   const [currentStep, setCurrentStep] = useState(1)
@@ -23,7 +24,7 @@ const CreateExam = () => {
       case 5:
         return <SettingsStep onNext={() => setCurrentStep(6)} />
       case 6:
-        return <div className="bg-white rounded-2xl p-6 text-[#8c929c] text-center py-10">Review & Publish step coming soon</div>
+        return <ReviewPublishStep onGoToStep={setCurrentStep} />
       default:
         return <ExamTypeStep onNext={() => setCurrentStep(2)} />
     }

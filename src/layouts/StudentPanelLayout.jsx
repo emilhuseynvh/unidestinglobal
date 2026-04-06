@@ -1,19 +1,19 @@
 import { Outlet } from "react-router"
-import StudentHeader from "../components/StudentHeader"
+import StudentPanelHeader from "../components/student/StudentPanelHeader"
 import StudentPanelSidebar from "../components/student/StudentPanelSidebar"
 import Footer from "../components/Footer"
 
 const StudentPanelLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <StudentHeader />
-      <div className="flex flex-1">
-        <aside className="bg-white shrink-0">
-          <div className="sticky top-0 h-screen overflow-y-auto">
+    <div className="min-h-screen flex flex-col bg-[#f9f9fa]">
+      <StudentPanelHeader />
+      <div className="flex flex-1 min-h-0 px-4 sm:px-6 gap-4">
+        <aside className="shrink-0 hidden lg:block">
+          <div className="sticky top-4 overflow-y-auto max-h-[calc(100vh-2rem)]">
             <StudentPanelSidebar />
           </div>
         </aside>
-        <main className="flex-1 bg-[#f9f9fa]">
+        <main className="flex-1 min-w-0">
           <Outlet />
         </main>
       </div>

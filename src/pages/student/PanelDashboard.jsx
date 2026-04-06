@@ -92,7 +92,7 @@ const PanelDashboard = () => {
   const isActive = true
 
   return (
-    <div className="px-4 sm:px-6 lg:px-10 py-6 sm:py-8 flex flex-col gap-8 sm:gap-10">
+    <div className="py-6 sm:py-8 flex flex-col gap-8 sm:gap-10">
       {!isActive && (
         <div className="bg-[#0a0c11] rounded-2xl p-5 sm:p-8 flex flex-col lg:flex-row items-start lg:items-center gap-6">
           <div className="flex-1 flex flex-col gap-3 min-w-0">
@@ -210,7 +210,7 @@ const PanelDashboard = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {courses.map((course, i) => (
-                <div key={i} className="bg-white border border-black/[0.03] rounded-2xl overflow-hidden flex flex-col gap-4 pb-4">
+                <Link key={i} to={`/student/panel/courses/${i + 1}`} className="bg-white border border-black/[0.03] rounded-2xl overflow-hidden flex flex-col gap-4 pb-4 no-underline hover:shadow-[0px_3px_12px_rgba(0,0,0,0.06)] transition-shadow">
                   <div className="h-[173px] relative overflow-hidden rounded-t-2xl">
                     <img src={course.image} alt={course.title} className="absolute inset-0 w-full h-full object-cover" />
                   </div>
@@ -259,7 +259,7 @@ const PanelDashboard = () => {
                       <span className="text-sm text-[#27282a] line-through leading-5">{course.oldPrice}</span>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

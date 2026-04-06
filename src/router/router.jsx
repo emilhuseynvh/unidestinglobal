@@ -54,25 +54,27 @@ import Home from "../pages/Home";
 
 import StudentPanelLayout from "../layouts/StudentPanelLayout";
 import PanelDashboard from "../pages/student/PanelDashboard";
-import Dashboard from "../pages/student/Dashboard";
-import MyCourses from "../pages/student/MyCourses";
-import MySchedule from "../pages/student/MySchedule";
-import Explore from "../pages/student/Explore";
-import Tutors from "../pages/student/Tutors";
-import TutorDetail from "../pages/student/TutorDetail";
-import TutorCourses from "../pages/student/TutorCourses";
-import TutorSchedule from "../pages/student/TutorSchedule";
-import Achievements from "../pages/student/Achievements";
-import AchievementsBadges from "../pages/student/AchievementsBadges";
-import Cart from "../pages/student/Cart";
-import Help from "../pages/student/Help";
-
-import SettingsLayout from "../layouts/SettingsLayout";
-import SettingsProfile from "../pages/settings/Profile";
-import SettingsPassword from "../pages/settings/Password";
-import Billing from "../pages/settings/Billing";
-import ParentsDetails from "../pages/settings/ParentsDetails";
-import Notifications from "../pages/settings/Notifications";
+import StudentMyCourses from "../pages/student/StudentMyCourses";
+import StudentCourseDetail from "../pages/student/StudentCourseDetail";
+import StudentLiveCourseDetail from "../pages/student/StudentLiveCourseDetail";
+import StudentSchedule from "../pages/student/StudentSchedule";
+import StudentTransactions from "../pages/student/StudentTransactions";
+import StudentPerformance from "../pages/student/StudentPerformance";
+import StudentAchievements from "../pages/student/StudentAchievements";
+import StudentExams from "../pages/student/StudentExams";
+import TakeExam from "../pages/student/TakeExam";
+import ExamQuestions from "../pages/student/ExamQuestions";
+import StudentEditProfile from "../pages/student/StudentEditProfile";
+import StudentEditBio from "../pages/student/StudentEditBio";
+import StudentEditPersonalization from "../pages/student/StudentEditPersonalization";
+import StudentEditParent from "../pages/student/StudentEditParent";
+import StudentEditCertificates from "../pages/student/StudentEditCertificates";
+import StudentSettings from "../pages/student/StudentSettings";
+import StudentSettingsPassword from "../pages/student/StudentSettingsPassword";
+import StudentSettingsBilling from "../pages/student/StudentSettingsBilling";
+import StudentSettingsNotifications from "../pages/student/StudentSettingsNotifications";
+import StudentSettingsLayout from "../layouts/StudentSettingsLayout";
+import EditProfileLayout from "../layouts/EditProfileLayout";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -102,35 +104,30 @@ export const router = createBrowserRouter(
             </Route>
             <Route path="/student" element={<StudentPanelLayout />}>
                 <Route index element={<PanelDashboard />} />
-                <Route path="panel/courses" element={<div>Courses</div>} />
-                <Route path="panel/exams" element={<div>Exams</div>} />
-                <Route path="panel/schedule" element={<div>Schedule</div>} />
-                <Route path="panel/transactions" element={<div>Transactions</div>} />
-                <Route path="panel/performance" element={<div>Performance</div>} />
-                <Route path="panel/achievements" element={<div>Achievements</div>} />
-                <Route path="panel/edit-profile" element={<div>Edit Profile</div>} />
-                <Route path="panel/settings" element={<div>Settings</div>} />
-                <Route path="dashboard" element={<Dashboard />} />
-                <Route path="my-courses" element={<MyCourses />} />
-                <Route path="schedule" element={<MySchedule />} />
-                <Route path="explore" element={<Explore />} />
-                <Route path="tutors" element={<Tutors />} />
-                <Route path="tutors/:id" element={<TutorDetail />} />
-                <Route path="tutors/:id/courses" element={<TutorCourses />} />
-                <Route path="tutors/:id/schedule" element={<TutorSchedule />} />
-                <Route path="achievements" element={<Achievements />} />
-                <Route path="achievements/badges" element={<AchievementsBadges />} />
-                <Route path="cart" element={<Cart />} />
-                <Route path="help" element={<Help />} />
-                <Route path="settings" element={<SettingsLayout />}>
-                    <Route index element={<SettingsProfile />} />
-                    <Route path="profile" element={<SettingsProfile />} />
-                    <Route path="password" element={<SettingsPassword />} />
-                    <Route path="billing" element={<Billing />} />
-                    <Route path="parents" element={<ParentsDetails />} />
-                    <Route path="notifications" element={<Notifications />} />
+                <Route path="panel/courses" element={<StudentMyCourses />} />
+                <Route path="panel/courses/:id" element={<StudentCourseDetail />} />
+                <Route path="panel/courses/live/:id" element={<StudentLiveCourseDetail />} />
+                <Route path="panel/exams" element={<StudentExams />} />
+                <Route path="panel/schedule" element={<StudentSchedule />} />
+                <Route path="panel/transactions" element={<StudentTransactions />} />
+                <Route path="panel/performance" element={<StudentPerformance />} />
+                <Route path="panel/achievements" element={<StudentAchievements />} />
+                <Route path="panel/edit-profile" element={<EditProfileLayout />}>
+                    <Route index element={<StudentEditProfile />} />
+                    <Route path="bio" element={<StudentEditBio />} />
+                    <Route path="personalization" element={<StudentEditPersonalization />} />
+                    <Route path="parent" element={<StudentEditParent />} />
+                    <Route path="certificates" element={<StudentEditCertificates />} />
+                </Route>
+                <Route path="panel/settings" element={<StudentSettingsLayout />}>
+                    <Route index element={<StudentSettings />} />
+                    <Route path="password" element={<StudentSettingsPassword />} />
+                    <Route path="billing" element={<StudentSettingsBilling />} />
+                    <Route path="notifications" element={<StudentSettingsNotifications />} />
                 </Route>
             </Route>
+            <Route path="/student/panel/exams/take/:id" element={<TakeExam />} />
+            <Route path="/student/panel/exams/questions/:id" element={<ExamQuestions />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="register/details" element={<RegisterDetails />} />

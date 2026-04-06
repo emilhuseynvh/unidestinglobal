@@ -1,6 +1,5 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from "react-router";
 import PublicPageLayout from "../layouts/PublicPageLayout";
-import StudentLayout from "../layouts/StudentLayout";
 import StudyAbroad from "../pages/StudyAbroad";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
@@ -53,6 +52,8 @@ import Terms from "../pages/Terms";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import Home from "../pages/Home";
 
+import StudentPanelLayout from "../layouts/StudentPanelLayout";
+import PanelDashboard from "../pages/student/PanelDashboard";
 import Dashboard from "../pages/student/Dashboard";
 import MyCourses from "../pages/student/MyCourses";
 import MySchedule from "../pages/student/MySchedule";
@@ -99,8 +100,16 @@ export const router = createBrowserRouter(
                 <Route path="terms" element={<Terms />} />
                 <Route path="privacy-policy" element={<PrivacyPolicy />} />
             </Route>
-            <Route path="/student" element={<StudentLayout />}>
-                <Route index element={<Dashboard />} />
+            <Route path="/student" element={<StudentPanelLayout />}>
+                <Route index element={<PanelDashboard />} />
+                <Route path="panel/courses" element={<div>Courses</div>} />
+                <Route path="panel/exams" element={<div>Exams</div>} />
+                <Route path="panel/schedule" element={<div>Schedule</div>} />
+                <Route path="panel/transactions" element={<div>Transactions</div>} />
+                <Route path="panel/performance" element={<div>Performance</div>} />
+                <Route path="panel/achievements" element={<div>Achievements</div>} />
+                <Route path="panel/edit-profile" element={<div>Edit Profile</div>} />
+                <Route path="panel/settings" element={<div>Settings</div>} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="my-courses" element={<MyCourses />} />
                 <Route path="schedule" element={<MySchedule />} />

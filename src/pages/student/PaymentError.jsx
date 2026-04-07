@@ -1,0 +1,36 @@
+import { Link } from "react-router"
+import StudentPanelHeader from "../../components/student/StudentPanelHeader"
+
+const PaymentError = () => {
+  return (
+    <div className="min-h-screen bg-[#f9f9fa] flex flex-col">
+      <StudentPanelHeader />
+      <div className="flex-1 flex items-center justify-center p-4">
+        <div className="bg-white rounded-3xl overflow-hidden w-full max-w-[474px]">
+          <div className="flex flex-col items-center gap-4 px-5 pt-[72px] pb-4">
+            <div className="py-2">
+              <div className="w-[88px] h-[88px] rounded-full bg-[rgba(237,64,48,0.12)] flex items-center justify-center relative">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#ed4030" strokeWidth="2.5" /><path d="M20 13.333V20M20 26.667h.017" stroke="#ed4030" strokeWidth="2.5" strokeLinecap="round" /></svg>
+                <div className="absolute inset-[-8px] rounded-[58px] border border-dashed border-[#df2917]" />
+              </div>
+            </div>
+            <div className="flex flex-col gap-1 text-center w-full">
+              <span className="text-[22px] font-medium text-[#0a0c11] leading-7 tracking-[-0.2px]">Payment Failed</span>
+              <span className="text-sm text-[#8c929c] leading-5">Something went wrong. Your payment could not be processed. Please check your payment details or try again.</span>
+            </div>
+          </div>
+          <div className="px-5 py-6 flex gap-4">
+            <Link to="/" className="flex-1 h-10 rounded-[10px] border border-black/[0.06] bg-[rgba(242,242,244,0.8)] backdrop-blur-[12px] text-sm font-medium text-[#0a0c11] flex items-center justify-center shadow-[0px_2px_1.5px_-0.5px_rgba(0,0,0,0.03),inset_0px_2px_3px_0px_rgba(255,255,255,0.03)] no-underline">
+              Back to home
+            </Link>
+            <Link to="/student/payment" className="flex-1 h-10 rounded-[10px] bg-[#ed4030] border border-black/[0.09] text-sm font-medium text-white flex items-center justify-center shadow-[0px_1px_1px_-0.5px_rgba(0,0,0,0.03),inset_0px_3px_3px_0px_rgba(255,255,255,0.12)] no-underline">
+              Try Again
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default PaymentError

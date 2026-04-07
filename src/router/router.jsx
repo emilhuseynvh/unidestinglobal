@@ -73,6 +73,7 @@ import StudentSettings from "../pages/student/StudentSettings";
 import StudentSettingsPassword from "../pages/student/StudentSettingsPassword";
 import StudentSettingsBilling from "../pages/student/StudentSettingsBilling";
 import StudentSettingsNotifications from "../pages/student/StudentSettingsNotifications";
+import Payment from "../pages/student/Payment";
 import StudentSettingsLayout from "../layouts/StudentSettingsLayout";
 import EditProfileLayout from "../layouts/EditProfileLayout";
 
@@ -128,6 +129,7 @@ export const router = createBrowserRouter(
             </Route>
             <Route path="/student/panel/exams/take/:id" element={<TakeExam />} />
             <Route path="/student/panel/exams/questions/:id" element={<ExamQuestions />} />
+            <Route path="/student/payment" element={<Payment />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="register/details" element={<RegisterDetails />} />

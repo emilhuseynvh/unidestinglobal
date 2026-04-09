@@ -135,8 +135,8 @@ const setupCards = [
 ]
 
 const StatusCard = ({ status }) => {
-  const card = statusCards[status]
-  if (!card) return null
+  const card = statusCards[status];
+  if (!card) return null;
 
   return (
     <div className={`${card.bg} border ${card.border} rounded-[18px] p-[23px] flex flex-col gap-4 overflow-hidden h-[239px]`}>

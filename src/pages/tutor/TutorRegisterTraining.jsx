@@ -1,8 +1,13 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router"
+import { useDispatch, useSelector } from "react-redux"
 import GuideHeader from "../../components/GuideHeader"
 import Footer from "../../components/Footer"
 import RegisterSidebar from "../../components/tutor/RegisterSidebar"
+import { updateTutor, resetRegister } from "../../store/slices/registerSlice"
+import { setCredentials } from "../../store/slices/authSlice"
+import { useRegisterMutation } from "../../store/api/authApi"
+import { tutorTrainingSchema, validateAll } from "../../validations/registerSchema"
 
 const popularLanguages = ["Azerbaijani", "English", "Russian", "Turkish", "French", "Spanish", "Japanese", "Chinese", "German"]
 
@@ -34,12 +39,18 @@ const RadioOption = ({ selected, title, desc, onClick }) => (
 
 const TutorRegisterTraining = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const registerState = useSelector((s) => s.register)
+  const [registerApi, { isLoading: isRegistering }] = useRegisterMutation()
+
   const [selectedLanguages, setSelectedLanguages] = useState([])
   const [languageSearch, setLanguageSearch] = useState("")
   const [teachMethod, setTeachMethod] = useState("")
   const [teachTarget, setTeachTarget] = useState("")
   const [subject, setSubject] = useState("")
   const [agreedToTerms, setAgreedToTerms] = useState(false)
+  const [errors, setErrors] = useState({})
+  const [apiError, setApiError] = useState("")
 
   const toggleLanguage = (lang) => {
     setSelectedLanguages((prev) =>
@@ -114,8 +125,8 @@ const TutorRegisterTraining = () => {
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <RadioOption selected={teachMethod === "online"} onClick={() => setTeachMethod("online")} title="Online" desc="Live video sessions from anywhere in the world" />
-                  <RadioOption selected={teachMethod === "in-person"} onClick={() => setTeachMethod("in-person")} title="In-Person" desc="Face-to-face sessions at a physical location" />
-                  <RadioOption selected={teachMethod === "hybrid"} onClick={() => setTeachMethod("hybrid")} title="Hybrid" desc="Flexible mix of online and in-person sessions" />
+                  <RadioOption selected={teachMethod === "in_person"} onClick={() => setTeachMethod("in_person")} title="In-Person" desc="Face-to-face sessions at a physical location" />
+                  <RadioOption selected={teachMethod === "both"} onClick={() => setTeachMethod("both")} title="Hybrid" desc="Flexible mix of online and in-person sessions" />
                 </div>
               </div>
 
@@ -130,9 +141,9 @@ const TutorRegisterTraining = () => {
                   <h2 className="text-[22px] font-semibold text-[#0a0c11] leading-7 tracking-[-0.2px]">Who will you teaching?</h2>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <RadioOption selected={teachTarget === "1-on-1"} onClick={() => setTeachTarget("1-on-1")} title="1-on-1" desc="Personalized sessions for a single student" />
-                  <RadioOption selected={teachTarget === "group"} onClick={() => setTeachTarget("group")} title="Group" desc="Collaborative classes for multiple students" />
-                  <RadioOption selected={teachTarget === "both"} onClick={() => setTeachTarget("both")} title="Both" desc="Offer 1-on-1 and group options together" />
+                  <RadioOption selected={teachTarget === "children"} onClick={() => setTeachTarget("children")} title="Children" desc="Sessions for school-age students" />
+                  <RadioOption selected={teachTarget === "adults"} onClick={() => setTeachTarget("adults")} title="Adults" desc="Sessions for university students and professionals" />
+                  <RadioOption selected={teachTarget === "both"} onClick={() => setTeachTarget("both")} title="Both" desc="Teach students of all ages" />
                 </div>
               </div>
 
@@ -228,17 +239,47 @@ const TutorRegisterTraining = () => {
                 </div>
               </div>
 
+              {apiError && (
+                <div className="bg-[rgba(237,64,48,0.08)] border border-[rgba(237,64,48,0.2)] rounded-xl px-4 py-3 text-sm text-[#df2917]">{apiError}</div>
+              )}
+              {Object.keys(errors).length > 0 && (
+                <div className="flex flex-col gap-1">
+                  {Object.values(errors).map((v, i) => (
+                    <span key={i} className="text-xs text-[#ed4030] leading-4">{v}</span>
+                  ))}
+                </div>
+              )}
+
               <div className="flex flex-col gap-4 items-center">
                 <button
-                  disabled={!agreedToTerms}
-                  onClick={() => agreedToTerms && navigate("/tutor/register/training/step2")}
+                  disabled={!agreedToTerms || isRegistering}
+                  onClick={async () => {
+                    if (!agreedToTerms) return
+                    const subjects = subject ? subject.split(",").map((s) => s.trim()).filter(Boolean) : []
+                    const trainingData = { languages: selectedLanguages, subjects, teaching_method: teachMethod, target_audience: teachTarget }
+                    const fieldErrors = validateAll(tutorTrainingSchema, trainingData)
+                    if (Object.keys(fieldErrors).length > 0) { setErrors(fieldErrors); return }
+                    setErrors({})
+
+                    dispatch(updateTutor(trainingData))
+                    const tutorPayload = { ...registerState.tutor, ...trainingData }
+                    const body = { ...registerState.user, password_confirmation: registerState.user.password, role: registerState.role, tutor: tutorPayload }
+                    try {
+                      const res = await registerApi(body).unwrap()
+                      dispatch(setCredentials({ token: res.data.token, user: res.data.user }))
+                      dispatch(resetRegister())
+                      navigate("/tutor/dashboard")
+                    } catch (err) {
+                      setApiError(err?.data?.message || "Registration failed")
+                    }
+                  }}
                   className={`w-full h-12 rounded-xl text-base font-medium leading-6 transition-colors ${
-                    agreedToTerms
+                    agreedToTerms && !isRegistering
                       ? "bg-[#007aff] text-white shadow-[0px_1px_1px_0px_rgba(0,0,0,0.03),inset_0px_3px_3px_0px_rgba(255,255,255,0.12)] hover:bg-[#0066d6]"
                       : "bg-[#f2f2f4] text-[#c3c6cc] cursor-not-allowed"
                   }`}
                 >
-                  Complete Registration
+                  {isRegistering ? "Registering..." : "Complete Registration"}
                 </button>
                 <p className="text-sm text-[#5b616d] text-center leading-6 max-w-[426px]">
                   By clicking Log in or Continue with, you agree to Unidestin{" "}

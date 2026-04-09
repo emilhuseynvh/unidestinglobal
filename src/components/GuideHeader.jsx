@@ -33,9 +33,9 @@ const GuideHeader = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <button className="hidden lg:flex h-12 px-3 py-1 bg-[rgba(242,242,244,0.8)] backdrop-blur-md border border-[rgba(0,0,0,0.06)] rounded-xl shadow-[0px_2px_1.5px_0px_rgba(0,0,0,0.03)] hover:bg-[rgba(242,242,244,1)] transition-colors items-center">
+            <Link to="/tutor/register" className="hidden lg:flex h-12 px-3 py-1 bg-[rgba(242,242,244,0.8)] backdrop-blur-md border border-[rgba(0,0,0,0.06)] rounded-xl shadow-[0px_2px_1.5px_0px_rgba(0,0,0,0.03)] hover:bg-[rgba(242,242,244,1)] transition-colors items-center no-underline">
               <span className="text-[#0a0c11] text-base font-medium px-1 leading-6 whitespace-nowrap">Become a tutor</span>
-            </button>
+            </Link>
             <Link to="/login" className="hidden md:flex h-12 px-3 py-1 bg-[#007aff] backdrop-blur-md border border-[rgba(0,0,0,0.09)] rounded-xl shadow-[0px_1px_1px_0px_rgba(0,0,0,0.03),inset_0px_3px_3px_0px_rgba(255,255,255,0.12)] hover:bg-[#0066d6] transition-colors items-center">
               <span className="text-white text-base font-medium px-1 leading-6">Login</span>
             </Link>
@@ -84,9 +84,9 @@ const GuideHeader = () => {
             </Link>
             <div className="border-t border-[#e9eaeb] my-3" />
             <div className="flex flex-col gap-3">
-              <button className="h-12 bg-[rgba(242,242,244,0.8)] border border-[rgba(0,0,0,0.06)] rounded-xl">
+              <Link to="/tutor/register" onClick={() => setMenuOpen(false)} className="h-12 bg-[rgba(242,242,244,0.8)] border border-[rgba(0,0,0,0.06)] rounded-xl flex items-center justify-center no-underline">
                 <span className="text-[#0a0c11] text-base font-medium leading-6">Become a tutor</span>
-              </button>
+              </Link>
               <Link to="/login" onClick={() => setMenuOpen(false)} className="h-12 bg-[#007aff] rounded-xl flex items-center justify-center">
                 <span className="text-white text-base font-medium leading-6">Login</span>
               </Link>

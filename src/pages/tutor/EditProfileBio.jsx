@@ -1,10 +1,29 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router"
 import ProfileTabs from "../../components/tutor/EditProfile/ProfileTabs"
 import ProfileProgressBar from "../../components/tutor/EditProfile/ProfileProgressBar"
+import { useGetMeQuery, useUpdateProfileMutation } from "../../store/api/authApi"
+import { toast } from "react-toastify"
 
 const EditProfileBio = () => {
-  const [bio, setBio] = useState("Hi, I'm Chinara - a Biology tutor specialising in IB HL, AP. I hold BSc in Molecular Biology from Baku State University and have 4 years of teaching experience.")
+  const { data: meData, isLoading: meLoading } = useGetMeQuery()
+  const [updateProfile, { isLoading: saving }] = useUpdateProfileMutation()
+  const [bio, setBio] = useState("")
+
+  useEffect(() => {
+    if (meData?.data?.bio) setBio(meData.data.bio)
+  }, [meData])
+
+  const handleSave = async () => {
+    try {
+      await updateProfile({ bio }).unwrap()
+      toast.success("Bio saved successfully")
+    } catch (err) {
+      toast.error(err?.data?.message || "Failed to save bio")
+    }
+  }
+
+  if (meLoading) return <div className="flex items-center justify-center py-20"><svg className="animate-spin h-8 w-8 text-[#007aff]" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg></div>
 
   return (
     <div className="flex flex-col bg-[#f9f9fa] min-h-full">
@@ -14,7 +33,7 @@ const EditProfileBio = () => {
           Back to Dashboard
         </Link>
       </div>
-      <ProfileProgressBar progress={26} />
+      <ProfileProgressBar progress={meData?.data?.bio ? 40 : 20} />
       <div className="md:px-6 px-3 lg:px-10">
         <ProfileTabs />
       </div>
@@ -24,15 +43,15 @@ const EditProfileBio = () => {
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <div className="w-4 h-0.5 rounded-full bg-[#c3c6cc]" />
-              <span className="text-[11px] font-bold text-[#c3c6cc] uppercase tracking-[1.1px]">Step 2 of 5 — Not completed</span>
+              <span className="text-[11px] font-bold text-[#c3c6cc] uppercase tracking-[1.1px]">Step 2 of 5 — {bio ? "Already complete" : "Not completed"}</span>
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
               <div className="flex flex-col gap-2">
                 <h1 className="text-[22px] font-semibold text-[#0a0c11] leading-7 tracking-[-0.2px]">Write your bio</h1>
                 <p className="text-sm text-[#5b616d] leading-5 max-w-[460px]">Your bio is the first thing students read. Be specific about your qualifications, teaching style, and who you help best.</p>
               </div>
-              <button className="h-10 px-3 rounded-[10px] bg-[#007aff] text-sm font-medium text-white shrink-0 hover:bg-[#0066d6] transition-colors shadow-[0px_1px_1px_0px_rgba(0,0,0,0.03),inset_0px_3px_3px_0px_rgba(255,255,255,0.12)]">
-                Save Changes
+              <button onClick={handleSave} disabled={saving} className={`h-10 px-3 rounded-[10px] text-sm font-medium text-white shrink-0 transition-colors shadow-[0px_1px_1px_0px_rgba(0,0,0,0.03),inset_0px_3px_3px_0px_rgba(255,255,255,0.12)] ${saving ? "bg-[#5caaff] cursor-not-allowed" : "bg-[#007aff] hover:bg-[#0066d6]"}`}>
+                {saving ? "Saving..." : "Save Changes"}
               </button>
             </div>
           </div>

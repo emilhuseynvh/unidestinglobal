@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router"
+import { useDispatch, useSelector } from "react-redux"
 import RegisterSidebar from "../components/RegisterSidebar"
-
-const imgLogo = "https://www.figma.com/api/mcp/asset/3e463ab6-04a8-4b61-825c-504cbe473499"
+import { updateStudent, resetRegister } from "../store/slices/registerSlice"
+import { setCredentials } from "../store/slices/authSlice"
+import { useRegisterMutation } from "../store/api/authApi"
 
 const categories = [
   "UX Design", "3D Design", "Illustration", "Figma", "Craft",
@@ -27,18 +29,47 @@ const certifications = [
 
 const RegisterComplete = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const registerState = useSelector((s) => s.register)
+  const [registerApi] = useRegisterMutation()
+
   const [step, setStep] = useState(1)
   const [selectedCats, setSelectedCats] = useState([])
   const [selectedSkills, setSelectedSkills] = useState([])
   const [selectedCerts, setSelectedCerts] = useState([])
   const [loading, setLoading] = useState(false)
+  const [apiError, setApiError] = useState("")
 
-  useEffect(() => {
-    if (loading) {
-      const timer = setTimeout(() => navigate("/dashboard"), 2000)
-      return () => clearTimeout(timer)
+  const handleFinish = async () => {
+    dispatch(updateStudent({
+      interests: selectedCats,
+      skills: selectedSkills,
+      certifications_interest: selectedCerts,
+    }))
+
+    const body = {
+      ...registerState.user,
+      role: registerState.role,
+      student: {
+        ...registerState.student,
+        interests: selectedCats,
+        skills: selectedSkills,
+        certifications_interest: selectedCerts,
+      },
     }
-  }, [loading, navigate])
+
+    setLoading(true)
+    setApiError("")
+    try {
+      const res = await registerApi(body).unwrap()
+      dispatch(setCredentials({ token: res.data.token, user: res.data.user }))
+      dispatch(resetRegister())
+      setTimeout(() => navigate("/student"), 2000)
+    } catch (err) {
+      setLoading(false)
+      setApiError(err?.data?.message || "Registration failed. Please try again.")
+    }
+  }
 
   const toggleItem = (item, list, setList, max = 4) => {
     if (list.includes(item)) {
@@ -74,7 +105,7 @@ const RegisterComplete = () => {
       </div>
       <div className="flex flex-col items-center gap-2 pt-6 mt-auto">
         <span className="text-[14px] font-normal text-[#535862] leading-5">Step {stepNum} of 3</span>
-        <button onClick={() => navigate("/dashboard")} className="text-[14px] font-semibold text-[#007aff] leading-[1.4] hover:underline">
+        <button onClick={handleFinish} className="text-[14px] font-semibold text-[#007aff] leading-[1.4] hover:underline">
           I'll do this later
         </button>
       </div>
@@ -163,7 +194,10 @@ const RegisterComplete = () => {
                   ))}
                 </div>
               </div>
-              <Footer stepNum={3} onBack={() => setStep(2)} onNext={() => setLoading(true)} nextLabel="Start learning" />
+              {apiError && (
+                <div className="w-full bg-[rgba(237,64,48,0.08)] border border-[rgba(237,64,48,0.2)] rounded-xl px-4 py-3 text-sm text-[#df2917]">{apiError}</div>
+              )}
+              <Footer stepNum={3} onBack={() => setStep(2)} onNext={handleFinish} nextLabel="Start learning" />
             </>
           )}
 

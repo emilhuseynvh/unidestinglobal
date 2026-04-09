@@ -130,7 +130,7 @@ const TutorSidebar = ({ isVerified = false }) => {
             </div>
             <div className="flex flex-col">
               {section.items.map((item) => {
-                const isActive = currentPath === item.path || (item.path === "/tutor/dashboard" && currentPath === "/tutor")
+                const isActive = currentPath === item.path || currentPath.startsWith(item.path + "/") || (item.path === "/tutor/dashboard" && currentPath === "/tutor")
                 return (
                   <Link
                     key={item.path}

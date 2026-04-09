@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router"
+import { useDispatch } from "react-redux"
+import { setRole, resetRegister } from "../store/slices/registerSlice"
 
 const steps = [
   { num: 1, title: "Your details", desc: "Provide an email and password" },
@@ -11,6 +13,7 @@ const steps = [
 const Register = () => {
   const [selected, setSelected] = useState(["student"])
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const toggleSelection = (type) => {
     setSelected((prev) =>
@@ -19,9 +22,15 @@ const Register = () => {
   }
 
   const handleContinue = () => {
+    dispatch(resetRegister())
     if (selected.length === 1 && selected[0] === "tutor") {
+      dispatch(setRole("tutor"))
       navigate("/tutor/register")
+    } else if (selected.length === 2) {
+      dispatch(setRole("both"))
+      navigate("/register/details")
     } else {
+      dispatch(setRole("student"))
       navigate("/register/details")
     }
   }

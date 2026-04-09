@@ -16,6 +16,7 @@ import Community from "../pages/Community";
 import Courses from "../pages/Courses";
 import CourseDetail from "../pages/CourseDetail";
 import TutorRegister from "../pages/tutor/TutorRegister";
+import TutorRegisterVerify from "../pages/tutor/TutorRegisterVerify";
 import TutorRegisterEducation from "../pages/tutor/TutorRegisterEducation";
 import TutorRegisterTraining from "../pages/tutor/TutorRegisterTraining";
 import TutorRegisterTraining2 from "../pages/tutor/TutorRegisterTraining2";
@@ -137,6 +138,7 @@ export const router = createBrowserRouter(
             <Route path="register/parent" element={<RegisterParent />} />
             <Route path="register/complete" element={<RegisterComplete />} />
             <Route path="tutor/register" element={<TutorRegister />} />
+            <Route path="tutor/register/verify" element={<TutorRegisterVerify />} />
             <Route path="tutor/register/education" element={<TutorRegisterEducation />} />
             <Route path="tutor/register/training" element={<TutorRegisterTraining />} />
             <Route path="tutor/register/training/step2" element={<TutorRegisterTraining2 />} />

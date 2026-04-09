@@ -1,7 +1,12 @@
 import { useState } from "react"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 import GuideHeader from "../components/GuideHeader"
 import Footer from "../components/Footer"
+import { useLoginMutation } from "../store/api/authApi"
+import { useDispatch } from "react-redux"
+import { setCredentials } from "../store/slices/authSlice"
+import { toast } from "react-toastify"
+import { loginSchema, validateField, validateAll } from "../validations/loginSchema"
 
 const GoogleIcon = () => (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -13,9 +18,71 @@ const GoogleIcon = () => (
 )
 
 const Login = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const [form, setForm] = useState({ email: "", password: "" })
+  const [errors, setErrors] = useState({})
+  const [touched, setTouched] = useState({})
   const [rememberMe, setRememberMe] = useState(false)
+  const [apiError, setApiError] = useState("")
+
+  const [login, { isLoading }] = useLoginMutation()
+
+  const handleChange = (field) => (e) => {
+    setForm((prev) => ({ ...prev, [field]: e.target.value }))
+    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }))
+    if (apiError) setApiError("")
+  }
+
+  const handleBlur = (field) => () => {
+    setTouched((prev) => ({ ...prev, [field]: true }))
+    const err = validateField(loginSchema, form, field)
+    if (err) setErrors((prev) => ({ ...prev, [field]: err }))
+  }
+
+  const handleSubmit = async () => {
+    const validationErrors = validateAll(loginSchema, form)
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors)
+      setTouched({ email: true, password: true })
+      return
+    }
+
+    setErrors({})
+    setApiError("")
+
+    try {
+      const res = await login({ email: form.email, password: form.password }).unwrap()
+      dispatch(setCredentials({ token: res.data.token, user: res.data.user }))
+      toast.success("Login successful")
+
+      const role = res.data.user?.role
+      if (role === "tutor") {
+        navigate("/tutor")
+      } else {
+        navigate("/student")
+      }
+    } catch (err) {
+      const message = err?.data?.message || "Login failed. Please check your credentials."
+      setApiError(message)
+      toast.error(message)
+    }
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") handleSubmit()
+  }
+
+  const inputClass =
+    "w-full text-base text-[#0a0c11] leading-6 outline-none placeholder:text-[#8c929c] px-1"
+
+  const wrapperClass = (field) =>
+    `border rounded-xl min-h-[48px] px-3 flex items-center transition-colors ${
+      touched[field] && errors[field]
+        ? "border-[#ed4030] focus-within:border-[#ed4030]"
+        : "border-black/[0.06] focus-within:border-[#007aff] focus-within:border-2"
+    }`
 
   return (
     <div className="min-h-screen bg-[#f9f9fa] flex flex-col">
@@ -28,41 +95,52 @@ const Login = () => {
               <h1 className="text-[25px] font-semibold text-[#0a0c11] leading-9 tracking-[-0.2px]">
                 Login to Unidestin
               </h1>
-              <div className="flex flex-col items-center">
+              <div className="flex items-center gap-1">
                 <span className="text-sm text-[#5b616d] leading-6">Don't have an account?</span>
-                <div className="flex items-center gap-2">
-                  <Link to="/register" className="text-sm font-medium text-[#007aff] leading-5">Sign up as a student</Link>
-                  <span className="text-sm text-[#5b616d]">or</span>
-                  <Link to="/register" className="text-sm font-medium text-[#007aff] leading-5">Sign up as a tutor</Link>
-                </div>
+                <Link to="/register" className="text-sm font-medium text-[#007aff] leading-5">Register</Link>
               </div>
             </div>
 
-            <div className="w-full flex flex-col gap-6">
+            {apiError && (
+              <div className="w-full bg-[rgba(237,64,48,0.08)] border border-[rgba(237,64,48,0.2)] rounded-xl px-4 py-3 flex items-center gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0"><circle cx="10" cy="10" r="7.5" stroke="#ed4030" strokeWidth="1.5" /><path d="M10 7v3M10 13h.01" stroke="#ed4030" strokeWidth="1.5" strokeLinecap="round" /></svg>
+                <span className="text-sm text-[#df2917] leading-5">{apiError}</span>
+              </div>
+            )}
+
+            <div className="w-full flex flex-col gap-6" onKeyDown={handleKeyDown}>
               <div className="flex flex-col gap-7">
                 <div className="flex flex-col gap-1">
-                  <label className="text-base font-medium text-[#5b616d] leading-6 px-0.5">Email adress</label>
-                  <div className="border border-black/[0.06] rounded-xl min-h-[48px] px-3 flex items-center focus-within:border-[#007aff] focus-within:border-2 transition-colors">
+                  <label className="text-base font-medium text-[#5b616d] leading-6 px-0.5">Email address</label>
+                  <div className={wrapperClass("email")}>
                     <input
                       type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={form.email}
+                      onChange={handleChange("email")}
+                      onBlur={handleBlur("email")}
                       placeholder="Enter your email"
-                      className="w-full text-base text-[#0a0c11] leading-6 outline-none placeholder:text-[#8c929c] px-1"
+                      className={inputClass}
                     />
                   </div>
+                  {touched.email && errors.email && (
+                    <span className="text-xs text-[#ed4030] leading-4 px-0.5">{errors.email}</span>
+                  )}
                 </div>
                 <div className="flex flex-col gap-1">
                   <label className="text-base font-medium text-[#5b616d] leading-6 px-0.5">Password</label>
-                  <div className="border border-black/[0.06] rounded-xl min-h-[48px] px-3 flex items-center focus-within:border-[#007aff] focus-within:border-2 transition-colors">
+                  <div className={wrapperClass("password")}>
                     <input
                       type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      value={form.password}
+                      onChange={handleChange("password")}
+                      onBlur={handleBlur("password")}
                       placeholder="•••••••••••"
-                      className="w-full text-base text-[#0a0c11] leading-6 outline-none placeholder:text-[#8c929c] px-1"
+                      className={inputClass}
                     />
                   </div>
+                  {touched.password && errors.password && (
+                    <span className="text-xs text-[#ed4030] leading-4 px-0.5">{errors.password}</span>
+                  )}
                 </div>
               </div>
 
@@ -85,8 +163,19 @@ const Login = () => {
               </div>
 
               <div className="flex flex-col gap-4">
-                <button className="w-full h-12 rounded-xl bg-[#007aff] text-base font-medium text-white leading-6 shadow-[0px_1px_1px_0px_rgba(0,0,0,0.03),inset_0px_3px_3px_0px_rgba(255,255,255,0.12)] hover:bg-[#0066d6] transition-colors">
-                  Login
+                <button
+                  onClick={handleSubmit}
+                  disabled={isLoading}
+                  className={`w-full h-12 rounded-xl text-base font-medium text-white leading-6 shadow-[0px_1px_1px_0px_rgba(0,0,0,0.03),inset_0px_3px_3px_0px_rgba(255,255,255,0.12)] transition-colors ${
+                    isLoading ? "bg-[#5caaff] cursor-not-allowed" : "bg-[#007aff] hover:bg-[#0066d6]"
+                  }`}
+                >
+                  {isLoading ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="white" strokeWidth="4" /><path className="opacity-75" fill="white" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
+                      Logging in...
+                    </span>
+                  ) : "Login"}
                 </button>
                 <button className="w-full h-12 rounded-xl border border-black/[0.06] bg-[#f2f2f4]/80 text-base font-medium text-[#0a0c11] leading-6 shadow-[0px_2px_1.5px_0px_rgba(0,0,0,0.03)] hover:bg-[#e8e8ec] transition-colors flex items-center justify-center gap-2">
                   <GoogleIcon />
